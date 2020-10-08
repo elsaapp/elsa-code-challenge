@@ -39,6 +39,20 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>UIAppFonts</key>
+    <array>
+        <string>elsa.ttf</string>
+        <string>Proxima Nova Bold.otf</string>
+        <string>Proxima Nova Regular Italic.otf</string>
+        <string>Proxima Nova Regular.otf</string>
+        <string>Proxima Nova Semibold Italic.otf</string>
+        <string>Proxima Nova Semibold.otf</string>
+        <string>ProximaNova-Bold.otf</string>
+        <string>ProximaNova-Regular.otf</string>
+        <string>ProximaNova-RegularIt.otf</string>
+        <string>ProximaNova-Semibold.otf</string>
+        <string>ProximaNova-SemiboldIt.otf</string>
+    </array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>

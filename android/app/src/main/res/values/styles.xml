@@ -2,8 +2,12 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/gradient</item>
         <!-- Customize your theme here. -->
-        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="SplashScreenTheme" parent="SplashScreen_SplashTheme">
+        <item name="colorPrimaryDark">@color/dark_navy</item>
     </style>
 
 </resources>

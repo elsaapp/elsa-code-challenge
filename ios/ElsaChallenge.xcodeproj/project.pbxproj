@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* ElsaChallengeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ElsaChallengeTests.m */; };
+		0408E3A1252F6A3B00BC9698 /* ProximaNova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0408E39B252F6A3B00BC9698 /* ProximaNova-Regular.otf */; };
+		0408E3A2252F6A3B00BC9698 /* ProximaNova-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0408E39C252F6A3B00BC9698 /* ProximaNova-Semibold.otf */; };
+		0408E3A3252F6A3B00BC9698 /* ProximaNova-SemiboldIt.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0408E39D252F6A3B00BC9698 /* ProximaNova-SemiboldIt.otf */; };
+		0408E3A4252F6A3B00BC9698 /* ProximaNova-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0408E39E252F6A3B00BC9698 /* ProximaNova-Bold.otf */; };
+		0408E3A5252F6A3B00BC9698 /* elsa.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0408E39F252F6A3B00BC9698 /* elsa.ttf */; };
+		0408E3A6252F6A3B00BC9698 /* ProximaNova-RegularIt.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0408E3A0252F6A3B00BC9698 /* ProximaNova-RegularIt.otf */; };
 		0F248C9BB2A235BDEB55C834 /* libPods-ElsaChallenge-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D364DDAADEAB54451965CE2 /* libPods-ElsaChallenge-tvOS.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -18,7 +24,7 @@
 		2DCD954D1E0B4F2C00145EB5 /* ElsaChallengeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ElsaChallengeTests.m */; };
 		374731ED18B3BA1EAA13F210 /* libPods-ElsaChallenge-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55621358A4C2EFD848239676 /* libPods-ElsaChallenge-tvOSTests.a */; };
 		4C2981EA90AC22D45BAC7B8F /* libPods-ElsaChallenge-ElsaChallengeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F75D6A13356549A6F5F24197 /* libPods-ElsaChallenge-ElsaChallengeTests.a */; };
-		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		81AB9BB82411601600AC10FF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.xib */; };
 		A3BE80C1D19A06C8674E9B60 /* libPods-ElsaChallenge.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75EB29AAE7D6CED25C143B40 /* libPods-ElsaChallenge.a */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +50,12 @@
 		00E356EE1AD99517003FC87E /* ElsaChallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ElsaChallengeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* ElsaChallengeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ElsaChallengeTests.m; sourceTree = "<group>"; };
+		0408E39B252F6A3B00BC9698 /* ProximaNova-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "ProximaNova-Regular.otf"; path = "../assets/fonts/ProximaNova-Regular.otf"; sourceTree = "<group>"; };
+		0408E39C252F6A3B00BC9698 /* ProximaNova-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "ProximaNova-Semibold.otf"; path = "../assets/fonts/ProximaNova-Semibold.otf"; sourceTree = "<group>"; };
+		0408E39D252F6A3B00BC9698 /* ProximaNova-SemiboldIt.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "ProximaNova-SemiboldIt.otf"; path = "../assets/fonts/ProximaNova-SemiboldIt.otf"; sourceTree = "<group>"; };
+		0408E39E252F6A3B00BC9698 /* ProximaNova-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "ProximaNova-Bold.otf"; path = "../assets/fonts/ProximaNova-Bold.otf"; sourceTree = "<group>"; };
+		0408E39F252F6A3B00BC9698 /* elsa.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = elsa.ttf; path = ../assets/fonts/elsa.ttf; sourceTree = "<group>"; };
+		0408E3A0252F6A3B00BC9698 /* ProximaNova-RegularIt.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "ProximaNova-RegularIt.otf"; path = "../assets/fonts/ProximaNova-RegularIt.otf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* ElsaChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElsaChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ElsaChallenge/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ElsaChallenge/AppDelegate.m; sourceTree = "<group>"; };
@@ -60,7 +72,7 @@
 		6D364DDAADEAB54451965CE2 /* libPods-ElsaChallenge-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ElsaChallenge-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		75EB29AAE7D6CED25C143B40 /* libPods-ElsaChallenge.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ElsaChallenge.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EE543A60AA0D134616A3C1E /* Pods-ElsaChallenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ElsaChallenge.debug.xcconfig"; path = "Target Support Files/Pods-ElsaChallenge/Pods-ElsaChallenge.debug.xcconfig"; sourceTree = "<group>"; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ElsaChallenge/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		81AB9BB72411601600AC10FF /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchScreen.xib; path = ElsaChallenge/LaunchScreen.xib; sourceTree = "<group>"; };
 		96DEA24A729A912EBD82E18C /* Pods-ElsaChallenge-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ElsaChallenge-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-ElsaChallenge-tvOSTests/Pods-ElsaChallenge-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
@@ -130,7 +142,7 @@
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
-				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
+				81AB9BB72411601600AC10FF /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
 			name = ElsaChallenge;
@@ -148,7 +160,6 @@
 				96DEA24A729A912EBD82E18C /* Pods-ElsaChallenge-tvOSTests.debug.xcconfig */,
 				FEB75A92D45778A816E97BF0 /* Pods-ElsaChallenge-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -175,6 +186,12 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				0408E39F252F6A3B00BC9698 /* elsa.ttf */,
+				0408E39E252F6A3B00BC9698 /* ProximaNova-Bold.otf */,
+				0408E39B252F6A3B00BC9698 /* ProximaNova-Regular.otf */,
+				0408E3A0252F6A3B00BC9698 /* ProximaNova-RegularIt.otf */,
+				0408E39C252F6A3B00BC9698 /* ProximaNova-Semibold.otf */,
+				0408E39D252F6A3B00BC9698 /* ProximaNova-SemiboldIt.otf */,
 				13B07FAE1A68108700A75B9A /* ElsaChallenge */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* ElsaChallengeTests */,
@@ -340,7 +357,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				0408E3A1252F6A3B00BC9698 /* ProximaNova-Regular.otf in Resources */,
+				0408E3A2252F6A3B00BC9698 /* ProximaNova-Semibold.otf in Resources */,
+				0408E3A3252F6A3B00BC9698 /* ProximaNova-SemiboldIt.otf in Resources */,
+				0408E3A4252F6A3B00BC9698 /* ProximaNova-Bold.otf in Resources */,
+				0408E3A5252F6A3B00BC9698 /* elsa.ttf in Resources */,
+				0408E3A6252F6A3B00BC9698 /* ProximaNova-RegularIt.otf in Resources */,
+				81AB9BB82411601600AC10FF /* LaunchScreen.xib in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

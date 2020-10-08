@@ -1,0 +1,77 @@
+/*eslint @typescript-eslint/camelcase: "off"*/
+// Color palette from Zeplin
+export enum Colors {
+  darknavy = '#0D0B2B',
+  purple1 = '#4f41b1',
+  purple2 = '#685aca',
+  purple3 = '#8274e4',
+  purple4 = '#9b8dfd',
+  purple5 = '#b5a7ff',
+  purple6 = '#cec0ff',
+  purple7 = '#e8daff',
+  blue1 = '#0042a1',
+  blue2 = '#005fe7',
+  blue3 = '#008fee',
+  blue4 = '#00aff3',
+  blue5 = '#33bff5',
+  blue6 = '#66cff7',
+  blue7 = '#a3e2fa',
+  blue8 = '#0072be',
+  green1 = '#006200',
+  green2 = '#008d00',
+  green3 = '#45af48',
+  green4 = '#73c679',
+  green5 = '#8fd193',
+  green6 = '#abdcae',
+  green7 = '#cceace',
+  green8 = '#5e8758',
+  yellow1 = '#bd6614',
+  yellow2 = '#ff9d00',
+  yellow3 = '#ffba29',
+  yellow4 = '#ffce45',
+  yellow5 = '#ffd76a',
+  yellow6 = '#ffe18f',
+  yellow7 = '#ffedbb',
+  red1 = '#830f00',
+  red2 = '#c45142',
+  red3 = '#ff715f',
+  red4 = '#ff9a8d',
+  red5 = '#ffaea3',
+  red6 = '#ffc2ba',
+  red7 = '#ffdad5',
+  red8 = '#cc5a4c',
+  turquoise1 = '#057572',
+  turquoise7 = '#c7edec',
+  gray1 = '#3c515c',
+  gray2 = '#91b2c2',
+  gray3 = '#bad0db',
+  gray4 = '#e9f1f5',
+  gray5 = '#F5FAFC',
+  white = '#ffffff',
+  black = '#110d28',
+  pain_dark = '#de6c00',
+  notes_light = '#f5e8d0',
+  notes_dark = '#754e00',
+  wellbeing_dark = '#66415d',
+  wellbeing_light = '#ffd7f5',
+  wellbeing_chart = '#80286a',
+  physicalactivity_dark = '#045956',
+  physicalactivity_light = '#b6f2f0',
+  activity_chart = '#068c88',
+  activity_chart_accent = '#69bfbc',
+  notes_chart = '#754400',
+  dark_blue_grey = '#1d1645',
+  transparent = 'transparent',
+  play_button = 'rgba(236, 78, 57, 0.8)',
+  dark_button_pressed = '#30414a',
+}
+
+export type IColors = typeof Colors
+
+export const Opacity = (opacity: number) => {
+  let hex = Number(Math.round(255 * opacity)).toString(16)
+  if (hex.length === 1) {
+    hex = '0' + hex
+  }
+  return hex
+}
