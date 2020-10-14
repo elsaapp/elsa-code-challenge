@@ -371,7 +371,7 @@ DEPENDENCIES:
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - boost-for-react-native
     - CocoaAsyncSocket
     - CocoaLibEvent
@@ -502,4 +502,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 8502e96e211bf51ceec7c39160f37caa46a95f3c
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.9.3
