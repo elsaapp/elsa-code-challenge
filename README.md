@@ -2,7 +2,7 @@
 
 You have a partially complete react-native app that you now need to improve by adding more features.
 
-We will use your additional implementation of our existing app skeleton as a common ground to go deep into tech discussions so feel free to browse around a bit in the existing code and familiarize yourself with how we write react-native at Elsa usin TypeScript, react-navigation, hooks, redux etc.
+We will use your additional implementation of our existing app skeleton as a common ground to go deep into tech discussions so feel free to browse around a bit in the existing code and familiarize yourself with how we write react-native at Elsa using TypeScript, react-navigation, hooks, redux etc.
 
 Feel free to bring in your favorite libs that will enable you to write better and more production ready code.
 
