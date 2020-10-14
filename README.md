@@ -14,21 +14,17 @@ Good luck! And have fun!
 
 These are just examples of features, feel free to come up with your own. And there is no need to finish all of them.
 
-### Add Medication(s)
-
-### Current medications list
-
-### Remove medication(s)
-
-### Medication history
-
-### Medication reminder
-
-### Medication start date
-
-### Pause a medication
-
-### Your feature
+- [ ] A way to add one (or more) medication(s)
+- [ ] View your current medications (in a list maybe)
+- [ ] Remove one (or more) medication(s)
+- [ ] A history of all medications that you've been taking
+- [ ] A reminder of when to take a particular medication
+- [ ] At what date did you start taking a particular medication
+- [ ] Provide both the brand name (i.e Ipren) and the substance (Ibuprofen). What about grouping on substances rathern than brand name?
+- [ ] A way to specify how strong the medication is (i.e. 1mg, 5g etc.) and what about grouping different strenghts together?
+- [ ] A way to specify how the medication is administered (orally, injection, infusion etc.)
+- [ ] Pause a medication, some medications shouldn't be used while pregnant or in combination with other medications
+- [ ] Your feature ™️
 
 ## Environment setup
 
@@ -36,6 +32,12 @@ Instructions on how to setup a React Native development environment can be found
 https://reactnative.dev/docs/environment-setup
 
 Make sure to follow the instructions for React Native CLI.
+
+### Support tools
+
+At Elsa we use quite a lot of extra tools to help us write consistent, safe and readable code. I.e. [prettier](https://prettier.io/) for code formatting, [eslint](https://eslint.org/) for linting, and [TypeScript](https://www.typescriptlang.org/) to enable a type system and lean on the compiler.
+
+If any of these tools are making you confused or slowing you down, then feel free to opt out of using them. For instance, even though we write almost all our code in TypeScript (.ts or .tsx files) these days you can write your code in plain old JavaScript and make it run side by side with our code, just create a .js file and start writing your code.
 
 ## Installation
 
@@ -59,13 +61,13 @@ NOTE! The React Native Bundler needs to be started on localhost:8081 before runn
 yarn start
 ```
 
-## Android emulator
+### Android emulator
 
 ```
 react-native run-android
 ```
 
-## iOS simulator
+### iOS simulator
 
 ```
 react-native run-ios
