@@ -15,5 +15,25 @@ export const addMedication = createAction(
   ) => action({medicationName, substance, finished, administered, dosage})
 )
 
-export const clearState = createAction('CLEAN_STATE')
+export const pauseMedication = createAction('PAUSE_MEDICATION', action => (paused: boolean) =>
+  action({paused})
+)
 
+export const deleteMedication = createAction('DELETE_MEDICATION', action => (id: string) =>
+  action({id})
+)
+
+export const archiveMedication = createAction(
+  'ARCHIVE_MEDICATION',
+  action => (
+    id: string,
+    medicationName: string,
+    substance: string,
+    finished: boolean,
+    administered: string,
+    dosage: string,
+    date: string
+  ) => action({id, medicationName, substance, finished, administered, dosage, date})
+)
+
+export const clearState = createAction('CLEAN_STATE')

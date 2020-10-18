@@ -1,0 +1,84 @@
+import React from 'react'
+import {StyleSheet, View} from 'react-native'
+import {Body, H1} from '../../Components/Typography/'
+import {COLORS} from '~/Style/Colors'
+import {RouteProp, useNavigation, useRoute} from '@react-navigation/native'
+import {SafeAreaView} from 'react-native-safe-area-context'
+
+import {BackButton} from '~/Navigation'
+import {CurrentMedicationStackParams} from '~/Navigation/Navigation'
+import {PrimaryBlueButton} from '~/Components'
+import {useDispatch} from 'react-redux'
+import {archiveMedication} from '~/Store/Actions'
+
+const styles = StyleSheet.create({
+  CONTAINER: {
+    flex: 1,
+  },
+  INFO: {
+    marginHorizontal: 24,
+    marginVertical: 24,
+    alignItems: 'center',
+  },
+  INFO_BOXES: {
+    flexDirection: 'row',
+  },
+  TEXT_HEADER: {},
+  TEXT: {},
+})
+
+export const MedicationInfo: React.FC = () => {
+  const dispatch = useDispatch()
+  const navigation = useNavigation()
+  const route = useRoute<RouteProp<CurrentMedicationStackParams, 'info'>>()
+  const medication = route.params.meds
+
+  return (
+    <>
+      <SafeAreaView style={{backgroundColor: COLORS.darknavy}} edges={['top']} />
+      <BackButton onPress={navigation.goBack} />
+      <View style={styles.CONTAINER}>
+        <View style={styles.INFO}>
+          <H1>Medication</H1>
+        </View>
+        <View style={styles.INFO_BOXES}>
+          <Body style={styles.TEXT_HEADER}> Brand:</Body>
+          <Body style={styles.TEXT}>{medication.name}</Body>
+        </View>
+        <View style={styles.INFO_BOXES}>
+          <Body style={styles.TEXT_HEADER}>Substance:</Body>
+          <Body style={styles.TEXT}>{medication.substance}</Body>
+        </View>
+        <View style={styles.INFO_BOXES}>
+          <Body style={styles.TEXT_HEADER}>Dosage</Body>
+          <Body style={styles.TEXT}>{medication.dosage}</Body>
+        </View>
+        <View style={styles.INFO_BOXES}>
+          <Body style={styles.TEXT_HEADER}>Started Taking</Body>
+          <Body style={styles.TEXT}>{medication?.addedAt?.substring(0, 10)}</Body>
+        </View>
+        <View style={styles.INFO_BOXES}>
+          <Body style={styles.TEXT_HEADER}>Active</Body>
+          <Body style={styles.TEXT}>Yes</Body>
+        </View>
+        <PrimaryBlueButton
+          title={'End Medication'}
+          onPress={() => {
+            navigation.goBack()
+            dispatch(
+              archiveMedication(
+                medication.id,
+                medication.name,
+                medication.substance,
+                true,
+                medication.administered,
+                String(medication.dosage),
+                medication.addedAt
+              )
+            )
+          }}
+        />
+      </View>
+    </>
+  )
+}

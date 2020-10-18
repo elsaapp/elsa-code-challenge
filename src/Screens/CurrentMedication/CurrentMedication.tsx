@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {FlatList, StyleSheet, View} from 'react-native'
 import {Body, H1} from '../../Components/Typography/'
 import {COLORS} from '~/Style/Colors'
+import {useNavigation} from '@react-navigation/native'
 import {useSelector} from 'react-redux'
 import {medicationsSelector} from '~/Store/Selectors'
 import {SafeAreaView} from 'react-native-safe-area-context'
@@ -22,6 +23,7 @@ const styles = StyleSheet.create({
 
 export const CurrentMedication: React.FC = () => {
   const fetchMedication = useSelector(medicationsSelector)
+  const navigation = useNavigation()
 
   const [medications, setMedications] = useState<IMedication[]>([])
 
@@ -62,12 +64,14 @@ export const CurrentMedication: React.FC = () => {
         <FlatList
           data={medications}
           ListEmptyComponent={isEmpty}
-          renderItem={({item: medications}) => (
+          renderItem={({item: medication}) => (
             <ListItem
-              title={medications.name}
-              detailsText={medications.addedAt}
-              subtitle={medications.substance}
-              onPress={() => (medications.finished = false)}
+              subtitle={medication?.substance}
+              title={medication?.name}
+              detailsText={`Started: ${medication?.addedAt.substring(0, 10)}`}
+              detailsTextStyle={{color: COLORS.black}}
+              onPress={() => navigation.navigate('info', {meds: medication})}
+              withArrow={true}
             />
           )}
         />

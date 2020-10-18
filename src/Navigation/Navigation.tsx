@@ -2,13 +2,15 @@ import React from 'react'
 import {createStackNavigator} from '@react-navigation/stack'
 
 import {Start} from '~/Screens/Start/Start'
-import {Settings} from '~/Screens/ChangeName/Settings'
+import {Settings} from '~/Screens/Settings/Settings'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import TabIcon from '../Components/TabIcon/TabIcon'
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
 import {Body} from '~/Components'
 import {CurrentMedication} from '~/Screens/CurrentMedication/CurrentMedication'
 import {MedicationHistory} from '~/Screens/MedicationHistory/MedicationHistory'
+import {IMedication} from '~/Store'
+import {MedicationInfo} from '~/Screens/Medication/Medication'
 
 export type NavigationStackParams = {
   start: undefined
@@ -25,6 +27,7 @@ export type HistoryStackParams = {
 
 export type CurrentMedicationStackParams = {
   medication: undefined
+  info: {meds: IMedication}
 }
 
 export type MedicationTab = {
@@ -108,6 +111,7 @@ function CurrentMedicationStackParams() {
   return (
     <Stack.Navigator headerMode="none">
       <Stack.Screen name="medication" component={CurrentMedication} />
+      <Stack.Screen name="info" component={MedicationInfo} />
     </Stack.Navigator>
   )
 }

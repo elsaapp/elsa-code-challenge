@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   rightSide: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     alignItems: 'center',
   },
   pressedItem: {
@@ -39,6 +39,7 @@ export type ListItemProps = {
   arrowColor?: string
   checked?: boolean
   detailsText?: string
+  detailsSecondLine?: string
   detailsTextStyle?: StyleProp<TextStyle>
   icon?: React.ReactElement
   isFirst?: boolean
@@ -56,6 +57,7 @@ export const ListItem: React.FC<ListItemProps> = ({
   checked,
   children,
   detailsText,
+  detailsSecondLine,
   detailsTextStyle,
   icon,
   isFirst = false,
@@ -82,12 +84,19 @@ export const ListItem: React.FC<ListItemProps> = ({
           </Body>
           {subtitle && <Body color={COLORS.gray1}>{subtitle}</Body>}
         </View>
+
         <View style={styles.rightSide}>
           {detailsText && (
             <Body color={COLORS.blue3} style={detailsTextStyle}>
               {detailsText}
             </Body>
           )}
+          {detailsSecondLine && (
+            <Body color={COLORS.blue3} style={detailsTextStyle}>
+              {detailsSecondLine}
+            </Body>
+          )}
+
           {icon && icon}
           {checked !== undefined && onToggle && <Toggle checked={checked} onToggle={onToggle} />}
           {withArrow && <Icons.chevron style={styles.arrow} color={arrowColor} size={20} />}

@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react'
-import {FlatList, StyleSheet, TouchableWithoutFeedback, View} from 'react-native'
+import {FlatList, StyleSheet, View} from 'react-native'
 import {Body, H1} from '../../Components/Typography'
 import {SafeAreaView} from 'react-native-safe-area-context'
 import {COLORS} from '../../Style/Colors'
 import {useSelector} from 'react-redux'
-import {medicationsSelector} from '~/Store/Selectors'
+import {historySelector} from '~/Store/Selectors'
 import {medicationHistoryService as service} from './MedicationHistory.service'
 import {ListItem} from '~/Components'
 import {IMedication} from '~/Store'
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
 })
 
 export const MedicationHistory: React.FC = () => {
-  const fetchMedication = useSelector(medicationsSelector)
+  const fetchMedication = useSelector(historySelector)
 
   const [seeHistory, setHistory] = useState<IMedication[]>([])
 
@@ -62,9 +62,12 @@ export const MedicationHistory: React.FC = () => {
           ListEmptyComponent={isEmpty}
           renderItem={({item: medications}) => (
             <ListItem
-              title={medications.name}
-              detailsText={medications.addedAt}
               subtitle={medications.substance}
+              title={medications.name}
+              detailsText={`Started: ${medications?.addedAt?.substring(0, 10)}`}
+              detailsSecondLine={`Ended: ${medications?.endedAt?.substring(0, 10)}`}
+              detailsTextStyle={{color: COLORS.black}}
+              onPress={() => (medications.finished = false)}
             />
           )}
         />
