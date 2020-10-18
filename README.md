@@ -1,3 +1,8 @@
+# Anthonys Solution for the Elsa code challenge 
+
+This is my solution for the Elsa code challenge. Sadly 8 hours is not a long time and there are a number of things i would have liked to add. I Will probably continue with this later
+
+
 # Elsa code challenge
 
 You have a partially complete react-native app that you now need to improve by adding more features.
