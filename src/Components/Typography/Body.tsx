@@ -1,60 +1,60 @@
-import React from 'react'
-import {StyleSheet, Text, TextProps, TextStyle} from 'react-native'
-import {Colors} from '~/Colors'
-import {Font, FontWeight, FontStyle} from '~/Font'
+import React from "react";
+import { StyleSheet, Text, TextProps, TextStyle } from "react-native";
+import { COLORS } from "../../Style/Colors";
+import { Font, FontWeight, FontStyle } from "../../Style/Font";
 
 const styles = StyleSheet.create({
   shared: {
     letterSpacing: 0,
   },
-})
+});
 
-export type BodyVariants = 'small' | 'medium' | 'large'
+export type BodyVariants = "small" | "medium" | "large";
 const variantStyle = (
   variant: BodyVariants,
   fontWeight: FontWeight,
   fontStyle: FontStyle,
-  underline: Pick<TextStyle, 'textDecorationLine'>
+  underline: Pick<TextStyle, "textDecorationLine">
 ) => {
   switch (variant) {
-    case 'small':
+    case "small":
       return {
         ...styles.shared,
         lineHeight: 16,
-        ...Font({fontSize: 14, fontWeight, fontStyle}),
+        ...Font({ fontSize: 14, fontWeight, fontStyle }),
         ...underline,
-      }
-    case 'medium':
+      };
+    case "medium":
       return {
         ...styles.shared,
         lineHeight: 20,
-        ...Font({fontSize: 16, fontWeight, fontStyle}),
+        ...Font({ fontSize: 16, fontWeight, fontStyle }),
         ...underline,
-      }
-    case 'large':
+      };
+    case "large":
       return {
         ...styles.shared,
         lineHeight: 24,
-        ...Font({fontSize: 18, fontWeight, fontStyle}),
+        ...Font({ fontSize: 18, fontWeight, fontStyle }),
         ...underline,
-      }
+      };
   }
-}
+};
 export type BodyProps = {
-  bold?: boolean
-  italic?: boolean
-  underline?: boolean
-  color?: string
-  variant?: BodyVariants
-} & TextProps
+  bold?: boolean;
+  italic?: boolean;
+  underline?: boolean;
+  color?: string;
+  variant?: BodyVariants;
+} & TextProps;
 export const Body: React.FC<BodyProps> = ({
   bold = false,
   italic = false,
   underline = false,
-  color = Colors.gray1,
+  color = COLORS.gray1,
   children,
   style,
-  variant = 'medium',
+  variant = "medium",
   ...props
 }) => (
   <Text
@@ -63,14 +63,17 @@ export const Body: React.FC<BodyProps> = ({
         variant,
         bold ? FontWeight.semiBold : FontWeight.regular,
         italic ? FontStyle.italic : FontStyle.normal,
-        underline ? {textDecorationLine: 'underline'} : {textDecorationLine: 'none'}
+        underline
+          ? { textDecorationLine: "underline" }
+          : { textDecorationLine: "none" }
       ),
       {
         color,
       },
       style,
     ]}
-    {...props}>
+    {...props}
+  >
     {children}
   </Text>
-)
+);

@@ -1,6 +1,6 @@
 /*eslint @typescript-eslint/camelcase: "off"*/
 // Color palette from Zeplin
-export enum Colors {
+export enum COLORS {
   darknavy = '#0D0B2B',
   purple1 = '#4f41b1',
   purple2 = '#685aca',

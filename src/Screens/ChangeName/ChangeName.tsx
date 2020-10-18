@@ -1,9 +1,11 @@
 import React, {useState} from 'react'
 import {StyleSheet, View} from 'react-native'
+import {useNavigation, RouteProp, useRoute} from '@react-navigation/native'
 import {useDispatch} from 'react-redux'
-import {PrimaryBlueButton, TextInput} from '~/Components'
-import type {ChangeNameRouteProp, RootNavigation} from '~/Root'
-import {changeName} from '~/Store/Actions'
+import {PrimaryBlueButton, SecondaryBlueButton} from '../../Components/Buttons/Buttons'
+import {TextInput} from '../../Components/TextInputs'
+import {changeName, clearState} from '../../Store/Actions/actions'
+import {NavigationStackParams} from '~/Navigation/Navigation'
 
 const styles = StyleSheet.create({
   container: {
@@ -15,12 +17,10 @@ const styles = StyleSheet.create({
   },
 })
 
-type ChangeNameProps = {
-  navigation: RootNavigation
-  route: ChangeNameRouteProp
-}
-export const ChangeName: React.FC<ChangeNameProps> = ({navigation, route}) => {
+export const ChangeName: React.FC = () => {
   const dispatch = useDispatch()
+  const navigation = useNavigation()
+  const route = useRoute<RouteProp<NavigationStackParams, 'changeName'>>()
   const [name, setName] = useState(route.params.name)
   return (
     <View style={styles.container}>
@@ -30,9 +30,10 @@ export const ChangeName: React.FC<ChangeNameProps> = ({navigation, route}) => {
         title={'Update name'}
         onPress={() => {
           dispatch(changeName(name))
-          navigation.setOptions({title: name})
+          navigation.goBack()
         }}
       />
+      <SecondaryBlueButton title={'Reset App'} onPress={() => dispatch(clearState())} />
     </View>
   )
 }

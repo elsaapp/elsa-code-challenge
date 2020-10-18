@@ -1,6 +1,6 @@
 import React from 'react'
 import {StyleProp, StyleSheet, TextStyle, View, ViewStyle} from 'react-native'
-import {Colors} from '~/Colors'
+import {Colors} from '~/Style/Colors'
 import {Icons} from '~/Icons'
 import {ButtonWrapper} from '../Buttons'
 import {Body} from '../Typography'
