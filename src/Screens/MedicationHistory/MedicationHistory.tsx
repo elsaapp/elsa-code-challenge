@@ -6,6 +6,8 @@ import {COLORS} from '../../Style/Colors'
 import {useSelector} from 'react-redux'
 import {medicationsSelector} from '~/Store/Selectors'
 import {medicationHistoryService as service} from './MedicationHistory.service'
+import {ListItem} from '~/Components'
+import {IMedication} from '~/Store'
 
 const styles = StyleSheet.create({
   CONTAINER: {
@@ -22,9 +24,10 @@ const styles = StyleSheet.create({
 export const MedicationHistory: React.FC = () => {
   const fetchMedication = useSelector(medicationsSelector)
 
-  const [seeHistory, setHistory] = useState([])
+  const [seeHistory, setHistory] = useState<IMedication[]>([])
 
   useEffect(() => {
+    // @ts-ignore
     service.load(fetchMedication).then(s => setHistory(s))
   }, [fetchMedication])
 
@@ -57,12 +60,12 @@ export const MedicationHistory: React.FC = () => {
         <FlatList
           data={seeHistory}
           ListEmptyComponent={isEmpty}
-          renderItem={({item: medication}) => (
-            <TouchableWithoutFeedback>
-              <View style={{paddingBottom: 5}}>
-                <Body>Hello</Body>
-              </View>
-            </TouchableWithoutFeedback>
+          renderItem={({item: medications}) => (
+            <ListItem
+              title={medications.name}
+              detailsText={medications.addedAt}
+              subtitle={medications.substance}
+            />
           )}
         />
       </View>

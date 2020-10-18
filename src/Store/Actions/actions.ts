@@ -17,8 +17,3 @@ export const addMedication = createAction(
 
 export const clearState = createAction('CLEAN_STATE')
 
-export const addHistory = createAction(
-  'ADD_HISTORY',
-  action => (name: string, addedAt: string, stoppedTaking: string, dosage: string) =>
-    action({name, addedAt, stoppedTaking, dosage})
-)

@@ -17,6 +17,7 @@
     "@react-navigation/native": "5.6.1",
     "@react-navigation/stack": "5.6.2",
     "date-fns": "2.13.0",
+    "dayjs": "^1.9.3",
     "react": "16.13.1",
     "react-native": "0.63.3",
     "react-native-clean-project": "^3.4.0",

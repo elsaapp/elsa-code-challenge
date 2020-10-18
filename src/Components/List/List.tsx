@@ -1,4 +1,4 @@
-import React, { FunctionComponent, forwardRef } from "react";
+import React, {FunctionComponent, forwardRef} from 'react'
 import {
   ScrollView,
   StyleProp,
@@ -7,8 +7,8 @@ import {
   ViewStyle,
   ViewProps,
   ScrollViewProps,
-} from "react-native";
-import { COLORS } from "~/Style/Colors";
+} from 'react-native'
+import {COLORS} from '~/Style/Colors'
 
 const styles = StyleSheet.create({
   container: {
@@ -31,20 +31,17 @@ const styles = StyleSheet.create({
     borderBottomColor: COLORS.gray3,
     borderBottomWidth: 1,
   },
-});
+})
 
 type ListProps = {
-  style?: StyleProp<ViewStyle>;
-  contentContainerStyle?: StyleProp<ViewStyle>;
-  children: React.ReactNode | React.ReactNode[];
-  keyboardShouldPersistTaps?: ScrollViewProps["keyboardShouldPersistTaps"];
-};
+  style?: StyleProp<ViewStyle>
+  contentContainerStyle?: StyleProp<ViewStyle>
+  children: React.ReactNode | React.ReactNode[]
+  keyboardShouldPersistTaps?: ScrollViewProps['keyboardShouldPersistTaps']
+}
 
 export const List = forwardRef<ScrollView, ListProps>(
-  (
-    { children, style, contentContainerStyle, keyboardShouldPersistTaps },
-    ref
-  ) => {
+  ({children, style, contentContainerStyle, keyboardShouldPersistTaps}, ref) => {
     return (
       <ScrollView
         ref={ref}
@@ -52,34 +49,25 @@ export const List = forwardRef<ScrollView, ListProps>(
         contentContainerStyle={[styles.contentContainer, contentContainerStyle]}
         keyboardShouldPersistTaps={keyboardShouldPersistTaps}
         showsVerticalScrollIndicator={false}
-        alwaysBounceVertical={false}
-      >
+        alwaysBounceVertical={false}>
         {children}
       </ScrollView>
-    );
+    )
   }
-);
+)
 
-export const SectionHeader: FunctionComponent<ViewProps> = ({
-  children,
-  style,
-  ...props
-}) => (
+export const SectionHeader: FunctionComponent<ViewProps> = ({children, style, ...props}) => (
   <View style={[styles.sectionHeader, style]} {...props}>
     {children}
   </View>
-);
+)
 
-export const Section: FunctionComponent<ViewProps> = ({
-  children,
-  style,
-  ...props
-}) => (
+export const Section: FunctionComponent<ViewProps> = ({children, style, ...props}) => (
   <View style={[styles.sectionGroup, style]} {...props}>
     {children}
   </View>
-);
+)
 
-export const ListDivider = ({ style }: { style?: StyleProp<ViewStyle> }) => (
+export const ListDivider = ({style}: {style?: StyleProp<ViewStyle>}) => (
   <View style={[styles.listDivider, style]} />
-);
+)

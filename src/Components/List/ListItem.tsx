@@ -1,7 +1,7 @@
 import React from 'react'
 import {StyleProp, StyleSheet, TextStyle, View, ViewStyle} from 'react-native'
-import {Colors} from '~/Style/Colors'
-import {Icons} from '~/Icons'
+import {COLORS} from '../../Style/Colors'
+import {Icons} from '../../Icons'
 import {ButtonWrapper} from '../Buttons'
 import {Body} from '../Typography'
 import {Toggle} from '../Toggle'
@@ -13,11 +13,11 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderBottomColor: Colors.gray3,
+    borderBottomColor: COLORS.gray3,
     borderBottomWidth: 1,
   },
   firstListItem: {
-    borderTopColor: Colors.gray3,
+    borderTopColor: COLORS.gray3,
     borderTopWidth: 1,
   },
   arrow: {
@@ -52,7 +52,7 @@ export type ListItemProps = {
   withArrow?: boolean
 }
 export const ListItem: React.FC<ListItemProps> = ({
-  arrowColor = Colors.gray1,
+  arrowColor = COLORS.gray1,
   checked,
   children,
   detailsText,
@@ -77,14 +77,14 @@ export const ListItem: React.FC<ListItemProps> = ({
     ) : (
       <>
         <View style={styles.leftSide}>
-          <Body bold color={Colors.black} style={titleStyle}>
+          <Body bold color={COLORS.black} style={titleStyle}>
             {title}
           </Body>
-          {subtitle && <Body color={Colors.gray1}>{subtitle}</Body>}
+          {subtitle && <Body color={COLORS.gray1}>{subtitle}</Body>}
         </View>
         <View style={styles.rightSide}>
           {detailsText && (
-            <Body color={Colors.blue3} style={detailsTextStyle}>
+            <Body color={COLORS.blue3} style={detailsTextStyle}>
               {detailsText}
             </Body>
           )}

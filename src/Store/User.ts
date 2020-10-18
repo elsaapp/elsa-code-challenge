@@ -2,13 +2,6 @@ import {RootAction} from '~/Store/Actions'
 // @ts-ignore
 import {v4 as uuidv4} from 'uuid'
 
-export type IHistory = {
-  name: string
-  addedAt: string
-  stoppedTaking: string
-  dosage: string
-}
-
 export type IMedication = {
   name: string
   substance: string
@@ -20,12 +13,10 @@ export type IMedication = {
 }
 
 export type MedicationsState = {
-  history: IHistory[]
   medications: IMedication[]
   name: string
 }
 export const defaultUser = (): MedicationsState => ({
-  history: [],
   medications: [],
   name: 'Elsa',
 })
@@ -54,7 +45,7 @@ export const user = (
             finished: finished,
             dosage: dosage,
             administered: administered,
-            addedAt: new Date().toISOString(),
+            addedAt: new Date(),
           },
         ],
       }

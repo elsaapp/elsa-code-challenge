@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from 'react'
-import {FlatList, StyleSheet, TouchableWithoutFeedback, View} from 'react-native'
+import {FlatList, StyleSheet, View} from 'react-native'
 import {Body, H1} from '../../Components/Typography/'
-import {COLORS} from '../../Style/Colors'
+import {COLORS} from '~/Style/Colors'
 import {useSelector} from 'react-redux'
-import {medicationsSelector} from '../../Store/Selectors'
+import {medicationsSelector} from '~/Store/Selectors'
 import {SafeAreaView} from 'react-native-safe-area-context'
 import {currentMedicationService as service} from './CurrentMedication.service'
+import {ListItem} from '~/Components'
+import {IMedication} from '~/Store'
 
 const styles = StyleSheet.create({
   CONTAINER: {
@@ -21,10 +23,11 @@ const styles = StyleSheet.create({
 export const CurrentMedication: React.FC = () => {
   const fetchMedication = useSelector(medicationsSelector)
 
-  const [medications, setMedications] = useState([])
+  const [medications, setMedications] = useState<IMedication[]>([])
 
   useEffect(() => {
     service.load(fetchMedication).then(s => {
+      // @ts-ignore
       setMedications(s)
     })
   }, [fetchMedication])
@@ -55,15 +58,17 @@ export const CurrentMedication: React.FC = () => {
         <View style={styles.INFO}>
           <H1>Active Medication(s)</H1>
         </View>
+
         <FlatList
           data={medications}
           ListEmptyComponent={isEmpty}
           renderItem={({item: medications}) => (
-            <TouchableWithoutFeedback>
-              <View style={{paddingBottom: 5}}>
-                <Body>Hello</Body>
-              </View>
-            </TouchableWithoutFeedback>
+            <ListItem
+              title={medications.name}
+              detailsText={medications.addedAt}
+              subtitle={medications.substance}
+              onPress={() => (medications.finished = false)}
+            />
           )}
         />
       </View>
