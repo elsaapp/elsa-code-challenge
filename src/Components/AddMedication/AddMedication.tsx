@@ -5,8 +5,7 @@ import {Body} from '../Typography/Body'
 import {TextInput} from '../TextInputs'
 import {addMedication} from '../../Store/Actions/actions'
 import {PrimaryBlueButton} from '../Buttons/Buttons'
-import {useDispatch, useSelector} from 'react-redux'
-import {medicationsSelector} from '../../Store/Selectors'
+import {useDispatch} from 'react-redux'
 
 const styles = StyleSheet.create({
   BUTTON: {
@@ -33,7 +32,6 @@ export const AddMedication = () => {
   const [dose, setDose] = useState('')
   const [administered, setAdministered] = useState('')
 
-  console.log(useSelector(medicationsSelector))
   return (
     <View style={styles.CONTAINER}>
       <Body style={styles.TEXT}>Add Medication</Body>
@@ -57,13 +55,15 @@ export const AddMedication = () => {
         <Body style={styles.INPUT_TEXT}>Administered:</Body>
         <TextInput style={{width: 200}} value={administered} onChangeText={setAdministered} />
       </View>
+      <View style={{paddingBottom: 10}}>
+        <Body style={styles.INPUT_TEXT}> Administered can be orally, injected, absorbed etc</Body>
+      </View>
       <View style={{paddingBottom: 20}}>
         <PrimaryBlueButton
           style={styles.BUTTON}
           title={'Add Medicine'}
           onPress={() => {
             dispatch(addMedication(name, substance, false, administered, dose))
-            console.log('do i get here')
             setName('')
             setDose('')
             setAdministered('')

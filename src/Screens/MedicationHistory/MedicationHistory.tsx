@@ -64,8 +64,8 @@ export const MedicationHistory: React.FC = () => {
             <ListItem
               subtitle={medications.substance}
               title={medications.name}
-              detailsText={`Started: ${medications?.addedAt?.substring(0, 10)}`}
-              detailsSecondLine={`Ended: ${medications?.endedAt?.substring(0, 10)}`}
+              detailsText={`Started: ${medications?.addedAt}`}
+              detailsSecondLine={`Ended: ${medications?.endedAt}`}
               detailsTextStyle={{color: COLORS.black}}
               onPress={() => (medications.finished = false)}
             />

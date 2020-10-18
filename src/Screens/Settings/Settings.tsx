@@ -51,6 +51,7 @@ export const Settings: React.FC = () => {
           title={'Update name'}
           onPress={() => {
             dispatch(changeName(name))
+            navigation.goBack()
           }}
         />
         <View style={{paddingVertical: 20}}>
@@ -60,7 +61,7 @@ export const Settings: React.FC = () => {
       <Modal visible={visible}>
         <View style={styles.modal}>
           <Body style={{textAlign: 'center'}}>
-            Are you sure you want to reset the state of the app?{' '}
+            Are you sure you want to reset the state of the app?
           </Body>
           <View
             style={{

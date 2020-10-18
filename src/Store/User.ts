@@ -1,6 +1,7 @@
 import {RootAction} from '~/Store/Actions'
 // @ts-ignore
 import {v4 as uuidv4} from 'uuid'
+import dayjs from 'dayjs'
 
 export type IMedication = {
   id: string
@@ -38,6 +39,7 @@ export const user = (
     }
     case 'ADD_MEDICATION': {
       const {medicationName, substance, finished, administered, dosage} = action.payload
+      const dateFromNow = new Date()
       return <MedicationsState>{
         ...state,
         medications: [
@@ -49,13 +51,14 @@ export const user = (
             finished: finished,
             dosage: dosage,
             administered: administered,
-            addedAt: new Date(),
+            addedAt: dayjs(dateFromNow).format('DD/MM/YYYY').toString(),
           },
         ],
       }
     }
     case 'ARCHIVE_MEDICATION':
-      const {medicationName, substance, finished, administered, dosage} = action.payload
+      const {medicationName, substance, finished, administered, dosage, date} = action.payload
+      const dateFromNow = new Date()
       return <MedicationsState>{
         ...state,
         history: [
@@ -67,14 +70,15 @@ export const user = (
             finished: finished,
             dosage: dosage,
             administered: administered,
-            addedAt: new Date(),
-            endedAt: new Date(),
+            addedAt: date,
+            endedAt: dayjs(dateFromNow).format('DD/MM/YYYY').toString(),
           },
         ],
       }
     case 'DELETE_MEDICATION':
-      const id = action.payload
-      return state.medications.filter(m => m.id === id)
+      // const id = action.payload
+      // return state.medications.filter(m => m.id === id) Ran out of time to fix
+      break
     case 'PAUSE_MEDICATION':
       const {paused} = action.payload
       return <MedicationsState>{

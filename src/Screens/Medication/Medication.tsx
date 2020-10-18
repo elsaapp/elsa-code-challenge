@@ -23,8 +23,8 @@ const styles = StyleSheet.create({
   INFO_BOXES: {
     flexDirection: 'row',
   },
-  TEXT_HEADER: {},
-  TEXT: {},
+  TEXT_HEADER: {fontWeight: 'bold'},
+  TEXT: {fontStyle: 'italic'},
 })
 
 export const MedicationInfo: React.FC = () => {
@@ -36,35 +36,45 @@ export const MedicationInfo: React.FC = () => {
   return (
     <>
       <SafeAreaView style={{backgroundColor: COLORS.darknavy}} edges={['top']} />
-      <BackButton onPress={navigation.goBack} />
+      <BackButton
+        onPress={() => {
+          navigation.reset({
+            stale: true,
+            routes: [{name: 'medication'}],
+          })
+        }}
+      />
       <View style={styles.CONTAINER}>
         <View style={styles.INFO}>
           <H1>Medication</H1>
         </View>
         <View style={styles.INFO_BOXES}>
-          <Body style={styles.TEXT_HEADER}> Brand:</Body>
+          <Body style={styles.TEXT_HEADER}>Brand: </Body>
           <Body style={styles.TEXT}>{medication.name}</Body>
         </View>
         <View style={styles.INFO_BOXES}>
-          <Body style={styles.TEXT_HEADER}>Substance:</Body>
+          <Body style={styles.TEXT_HEADER}>Substance: </Body>
           <Body style={styles.TEXT}>{medication.substance}</Body>
         </View>
         <View style={styles.INFO_BOXES}>
-          <Body style={styles.TEXT_HEADER}>Dosage</Body>
+          <Body style={styles.TEXT_HEADER}>Dosage: </Body>
           <Body style={styles.TEXT}>{medication.dosage}</Body>
         </View>
         <View style={styles.INFO_BOXES}>
-          <Body style={styles.TEXT_HEADER}>Started Taking</Body>
+          <Body style={styles.TEXT_HEADER}>Started Taking: </Body>
           <Body style={styles.TEXT}>{medication?.addedAt?.substring(0, 10)}</Body>
         </View>
         <View style={styles.INFO_BOXES}>
-          <Body style={styles.TEXT_HEADER}>Active</Body>
+          <Body style={styles.TEXT_HEADER}>Active: </Body>
           <Body style={styles.TEXT}>Yes</Body>
+        </View>
+        <View style={styles.INFO_BOXES}>
+          <Body style={styles.TEXT_HEADER}>Administration Method: </Body>
+          <Body style={styles.TEXT}>{medication.administered}</Body>
         </View>
         <PrimaryBlueButton
           title={'End Medication'}
           onPress={() => {
-            navigation.goBack()
             dispatch(
               archiveMedication(
                 medication.id,
@@ -76,6 +86,10 @@ export const MedicationInfo: React.FC = () => {
                 medication.addedAt
               )
             )
+            navigation.reset({
+              stale: true,
+              routes: [{name: 'medication'}],
+            })
           }}
         />
       </View>
