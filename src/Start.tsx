@@ -52,16 +52,12 @@ type StartProps = {
 export const Start: React.FC<StartProps> = ({navigation}) => {
   const name = useSelector(nameSelector)
   const medications = useSelector(medicationsSelector)
-  const medicationHistory = useSelector(medicationHistorySelector)
 
   const goToChangeNameScreen = () => navigation.navigate(Routes.CHANGE_NAME, {name})
   const gotoAddMedicationScreen = () => navigation.navigate(Routes.ADD_MEDICATION)
   const gotoMedicationHistoryScreen = () => navigation.navigate(Routes.MEDICATION_HISTORY)
 
   const dispatch = useDispatch()
-  console.log('name', name)
-  console.log('medications', medications)
-  console.log('medicationHistory', medicationHistory)
 
   const inUseMedicationsList = medications.filter(item => item.paused !== true)
   const pausedMedicationsList = medications.filter(item => item.paused !== false)

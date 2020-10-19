@@ -8,7 +8,7 @@ import {
     Section,
     ListItem,
   } from '~/Components'
-import {Body} from './Components/Typography'
+import {Body} from '../Components/Typography'
 import {cleanHistory} from '~/Store/Actions'
 import {Routes} from '~/Navigation/Routes'
 import type {RootNavigation} from '~/Root'
