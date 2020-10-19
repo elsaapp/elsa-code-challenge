@@ -18,7 +18,7 @@ import {
 } from '~/Components'
 import {Routes} from '~/Navigation/Routes'
 import type {RootNavigation} from '~/Root'
-import {nameSelector, medicationsSelector, medicationHistorySelector} from '~/Store/Selectors/User'
+import {nameSelector, medicationsSelector} from '~/Store/Selectors/User'
 import {cleanMedicationList} from '~/Store/Actions'
 import {Body} from './Components/Typography'
 import {IMedication} from '~/Store'
@@ -93,7 +93,7 @@ export const Start: React.FC<StartProps> = ({navigation}) => {
   const clearMedicationList = () => {
     Alert.alert('Delete Medication List', 'Are you sure you want to delete your list?', [
       {text: 'No'},
-      {text: 'Yes', onPress: () => dispatch(cleanMedicationList())},
+      {text: 'Yes', onPress: () => dispatch(cleanMedicationList(medications))},
     ])
   }
 

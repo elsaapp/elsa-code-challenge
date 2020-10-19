@@ -110,8 +110,14 @@ export const user = (
     }
     case 'CLEAN_STATE':
       return defaultUser()
-    case 'CLEAN_MEDICATION_LIST':
-      return {...state, medications: []}
+    case 'CLEAN_MEDICATION_LIST': {
+      const {medicationList} = action.payload
+      return {
+        ...state,
+        medications: [],
+        medicationHistory: state.medicationHistory.concat(medicationList)
+      }
+    }
     case 'CLEAN_HISTORY':
       return {...state, medicationHistory: []}
     default:

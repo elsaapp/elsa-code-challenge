@@ -1,8 +1,9 @@
 import {createAction} from 'typesafe-actions'
+import {IMedication} from '~/Store'
 
 export const cleanState = createAction('CLEAN_STATE')
 
-export const cleanMedicationList = createAction('CLEAN_MEDICATION_LIST')
+export const cleanMedicationList = createAction('CLEAN_MEDICATION_LIST', action => (medicationList: IMedication[]) => action({medicationList}))
 
 export const cleanHistory = createAction('CLEAN_HISTORY')
 
