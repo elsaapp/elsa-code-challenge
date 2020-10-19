@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
 type StartProps = {
   navigation: RootNavigation
 }
+
 export const Start: React.FC<StartProps> = ({navigation}) => {
   const name = useSelector(nameSelector)
   const medications = useSelector(medicationsSelector)
@@ -72,6 +73,7 @@ export const Start: React.FC<StartProps> = ({navigation}) => {
           key={key}
           name={medication.name}
           substance={medication.substance}
+          strength={medication.strength}
           dosage={medication.dosage}
           titleStyle={{fontSize: 17}}
           withArrow
@@ -104,7 +106,7 @@ export const Start: React.FC<StartProps> = ({navigation}) => {
       <View style={styles.content}>
         <View style={styles.info}>
           <H1>Hello {name}!</H1>
-          <SecondaryBlueButton title={'Change name'} onPress={goToChangeNameScreen} />
+          <SecondaryBlueButton title='Change name' onPress={goToChangeNameScreen} />
         </View>
         <List>
           <Section>

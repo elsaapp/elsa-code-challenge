@@ -140,12 +140,12 @@ export const MedicationDetails: React.FC<MedicationDetailsProp> = ({navigation, 
         </View>
         <PrimaryBlueButton
           style={styles.button}
-          title={'Update medication information'}
+          title='Update medication information'
           onPress={onPressUpdateMedication}
         />
         <SecondaryBlueButton
           style={styles.button}
-          title={'Remove medication'}
+          title='Remove medication'
           onPress={onPressRemoveMedication}
         />
         <View style={{paddingBottom: 36}} />

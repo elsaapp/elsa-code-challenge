@@ -83,7 +83,7 @@ export const AddMedication: React.FC<ChangeNameProps> = ({navigation}) => {
       />
       <PrimaryBlueButton
         style={styles.button}
-        title={'Add new medication'}
+        title='Add new medication'
         onPress={onAddMedication}
       />
       {errorMessage && (

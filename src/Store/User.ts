@@ -85,7 +85,7 @@ export const user = (
       const {name, addedAt, substance, strength, dosage, administratedVia, paused, startingDate} = action.payload
       return {
         ...state,
-        medications: state.medications.filter(item => item.name !== name),
+        medications: state.medications.filter(item => item.addedAt !== addedAt),
         medicationHistory: [
           ...state.medicationHistory,
           {
@@ -99,6 +99,13 @@ export const user = (
             startingDate: startingDate,
           },
         ],
+      }
+    }
+    case 'DELETE_RECORD': {
+      const {addedAt} = action.payload
+      return {
+        ...state,
+        medicationHistory: state.medicationHistory.filter(item => item.addedAt !== addedAt),
       }
     }
     case 'CLEAN_STATE':

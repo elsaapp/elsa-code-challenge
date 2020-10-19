@@ -6,6 +6,8 @@ export const cleanMedicationList = createAction('CLEAN_MEDICATION_LIST')
 
 export const cleanHistory = createAction('CLEAN_HISTORY')
 
+export const deleteRecord = createAction('DELETE_RECORD', action => (addedAt: string | undefined) => action({addedAt}))
+
 export const changeName = createAction('CHANGE_NAME', action => (name: string) => action({name}))
 
 export const addMedication = createAction(

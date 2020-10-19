@@ -7,7 +7,6 @@ import {
   ViewStyle,
   ViewProps,
   ScrollViewProps,
-  TouchableWithoutFeedback,
 } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import {Colors} from '~/Colors'

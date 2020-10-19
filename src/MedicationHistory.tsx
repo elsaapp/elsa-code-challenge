@@ -8,21 +8,28 @@ import {
     Section,
     ListItem,
   } from '~/Components'
-  import {Body} from './Components/Typography'
-  import {cleanHistory} from '~/Store/Actions'
+import {Body} from './Components/Typography'
+import {cleanHistory} from '~/Store/Actions'
+import {Routes} from '~/Navigation/Routes'
+import type {RootNavigation} from '~/Root'
 
-  const styles = StyleSheet.create({
+const styles = StyleSheet.create({
+    container: {
+        paddingVertical: 24,
+    },
     text: {
         marginTop: 12,
-      },
-      clearListButtonContainer: {
+    },
+    clearListButtonContainer: {
         marginVertical: 24,
-      },
-  })
+    },
+})
 
-type MedicationHistoryProps = {}
+type MedicationHistoryProps = {
+    navigation: RootNavigation
+}
 
-export const MedicationHistory: React.FC<MedicationHistoryProps> = () => {
+export const MedicationHistory: React.FC<MedicationHistoryProps> = ({navigation}) => {
     const medicationHistory = useSelector(medicationHistorySelector)
 
     const dispatch = useDispatch()
@@ -35,7 +42,7 @@ export const MedicationHistory: React.FC<MedicationHistoryProps> = () => {
       }
 
     return (
-        <List>
+        <List style={styles.container}>
             <Section>
                 {medicationHistory.length !== 0 ? (
                     medicationHistory.map((medication, key) => {
@@ -46,9 +53,21 @@ export const MedicationHistory: React.FC<MedicationHistoryProps> = () => {
                             strength={medication.strength}
                             dosage={medication.dosage}
                             administratedVia={medication.administratedVia}
-                            addedAt={medication.addedAt}
                             startingDate={medication.startingDate}
                             titleStyle={{fontSize: 17}}
+                            onPress={() => {
+                                const result = medicationHistory.find(item => item.name === medication.name)
+                                navigation.navigate(Routes.MEDICATION_RECORD, {
+                                  name: result.name,
+                                  substance: result.substance,
+                                  strength: result.strength,
+                                  dosage: result.dosage,
+                                  administratedVia: result.administratedVia,
+                                  addedAt: result.addedAt,
+                                  paused: result.paused,
+                                  startingDate: result.startingDate,
+                                })
+                              }}
                         />
                     })
                 ) : (

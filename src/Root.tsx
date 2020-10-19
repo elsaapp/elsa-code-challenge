@@ -15,6 +15,7 @@ import {Start} from '~/Start'
 import {initiateStore, persistor, IMedication} from '~/Store'
 import {MedicationDetails} from '~/MedicationDetails'
 import {MedicationHistory} from '~/MedicationHistory'
+import { MedicationRecord } from '~/MedicationRecord'
 
 export type RootStackParamList = {
   [Routes.START]: undefined
@@ -22,6 +23,7 @@ export type RootStackParamList = {
   [Routes.ADD_MEDICATION]: undefined
   [Routes.MEDICATION_DETAILS]: IMedication
   [Routes.MEDICATION_HISTORY]: undefined
+  [Routes.MEDICATION_RECORD]: IMedication
 }
 const Stack = createStackNavigator<RootStackParamList>()
 
@@ -64,6 +66,13 @@ const RootStack: React.FC = () => {
         options={{
           title: 'Medication History',
         }}
+      />
+      <Stack.Screen
+        name={Routes.MEDICATION_RECORD}
+        component={MedicationRecord}
+        options={({route}) => ({
+          title: route.params.name,
+        })}
       />
     </Stack.Navigator>
   )

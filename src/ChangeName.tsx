@@ -50,7 +50,7 @@ export const ChangeName: React.FC<ChangeNameProps> = ({navigation, route}) => {
     <View style={styles.container}>
       <View>
         <TextInput value={name} onChangeText={setName} />
-        <PrimaryBlueButton style={styles.button} title={'Update name'} onPress={changeUserName} />
+        <PrimaryBlueButton style={styles.button} title='Update name' onPress={changeUserName} />
       </View>
       <SecondaryGrayButton style={styles.button} title="Sign Out" onPress={resetState} />
     </View>
