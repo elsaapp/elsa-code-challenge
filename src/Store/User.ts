@@ -2,15 +2,23 @@ import {RootAction} from '~/Store/Actions'
 
 export type IMedication = {
   name: string
-  addedAt: string
+  substance: string
+  strength: string
+  dosage: string
+  administratedVia: string
+  addedAt?: string
+  paused: boolean
+  startingDate: string
 }
 
 export type MedicationsState = {
   medications: IMedication[]
+  medicationHistory: IMedication[]
   name: string
 }
 export const defaultUser = (): MedicationsState => ({
   medications: [],
+  medicationHistory: [],
   name: 'Elsa',
 })
 export const user = (
@@ -26,17 +34,79 @@ export const user = (
       }
     }
     case 'ADD_MEDICATION': {
-      const {medicationName} = action.payload
+      const {name, substance, strength, dosage, administratedVia, startingDate} = action.payload
       return {
         ...state,
         medications: [
           ...state.medications,
-          {name: medicationName, addedAt: new Date().toISOString()},
+          {
+            name: name,
+            addedAt: new Date().toISOString(),
+            substance: substance,
+            strength: strength,
+            dosage: dosage,
+            administratedVia: administratedVia,
+            paused: false,
+            startingDate: startingDate,
+          },
+        ],
+      }
+    }
+    case 'UPDATE_MEDICATION': {
+      const {
+        name,
+        addedAt,
+        substance,
+        strength,
+        dosage,
+        administratedVia,
+        paused,
+        startingDate,
+      } = action.payload
+      return {
+        ...state,
+        medications: state.medications
+          .filter(item => item.addedAt !== addedAt)
+          .concat([
+            {
+              name,
+              addedAt,
+              substance,
+              strength,
+              dosage,
+              administratedVia,
+              paused,
+              startingDate,
+            },
+          ]),
+      }
+    }
+    case 'REMOVE_MEDICATION': {
+      const {name, addedAt, substance, strength, dosage, administratedVia, paused, startingDate} = action.payload
+      return {
+        ...state,
+        medications: state.medications.filter(item => item.name !== name),
+        medicationHistory: [
+          ...state.medicationHistory,
+          {
+            name: name,
+            addedAt: addedAt,
+            substance: substance,
+            strength: strength,
+            dosage: dosage,
+            administratedVia: administratedVia,
+            paused: paused,
+            startingDate: startingDate,
+          },
         ],
       }
     }
     case 'CLEAN_STATE':
       return defaultUser()
+    case 'CLEAN_MEDICATION_LIST':
+      return {...state, medications: []}
+    case 'CLEAN_HISTORY':
+      return {...state, medicationHistory: []}
     default:
       return state
   }

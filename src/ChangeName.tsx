@@ -1,17 +1,21 @@
 import React, {useState} from 'react'
-import {StyleSheet, View} from 'react-native'
+import {Dimensions, StyleSheet, View, Alert} from 'react-native'
 import {useDispatch} from 'react-redux'
-import {PrimaryBlueButton, TextInput} from '~/Components'
+import {PrimaryBlueButton, SecondaryGrayButton, TextInput} from '~/Components'
 import type {ChangeNameRouteProp, RootNavigation} from '~/Root'
-import {changeName} from '~/Store/Actions'
+import {changeName, cleanState} from '~/Store/Actions'
+import {Routes} from '~/Navigation/Routes'
 
 const styles = StyleSheet.create({
   container: {
     paddingTop: 24,
     paddingHorizontal: 24,
+    height: Dimensions.get('window').height * 0.8,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
   },
   button: {
-    alignSelf: 'flex-start',
+    alignSelf: 'center',
   },
 })
 
@@ -22,17 +26,33 @@ type ChangeNameProps = {
 export const ChangeName: React.FC<ChangeNameProps> = ({navigation, route}) => {
   const dispatch = useDispatch()
   const [name, setName] = useState(route.params.name)
+
+  const changeUserName = () => {
+    dispatch(changeName(name))
+    navigation.setOptions({title: name})
+    navigation.navigate(Routes.START)
+  }
+
+  const resetState = () => {
+    Alert.alert('Sign Out', 'Are you sure you want to sign out?', [
+      {text: 'No'},
+      {
+        text: 'Yes',
+        onPress: () => {
+          dispatch(cleanState())
+          navigation.navigate(Routes.START)
+        },
+      },
+    ])
+  }
+
   return (
     <View style={styles.container}>
-      <TextInput value={name} onChangeText={setName} />
-      <PrimaryBlueButton
-        style={styles.button}
-        title={'Update name'}
-        onPress={() => {
-          dispatch(changeName(name))
-          navigation.setOptions({title: name})
-        }}
-      />
+      <View>
+        <TextInput value={name} onChangeText={setName} />
+        <PrimaryBlueButton style={styles.button} title={'Update name'} onPress={changeUserName} />
+      </View>
+      <SecondaryGrayButton style={styles.button} title="Sign Out" onPress={resetState} />
     </View>
   )
 }
