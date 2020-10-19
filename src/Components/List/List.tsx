@@ -8,7 +8,10 @@ import {
   ViewProps,
   ScrollViewProps,
 } from 'react-native'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 import {Colors} from '~/Colors'
+import {Icons} from '~/Icons'
+import {H2} from '~/Components'
 
 const styles = StyleSheet.create({
   container: {
@@ -26,10 +29,15 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   sectionHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginTop: 24,
     paddingBottom: 12,
     borderBottomColor: Colors.gray3,
     borderBottomWidth: 1,
+  },
+  arrow: {
+    marginRight: -6,
   },
 })
 
@@ -38,6 +46,14 @@ type ListProps = {
   contentContainerStyle?: StyleProp<ViewStyle>
   children: React.ReactNode | React.ReactNode[]
   keyboardShouldPersistTaps?: ScrollViewProps['keyboardShouldPersistTaps']
+}
+
+export type SectionHeaderProps = {
+  arrowColor?: string
+  withArrow?: boolean
+  style?: StyleProp<ViewStyle>
+  title: string
+  onPress?: () => void
 }
 
 export const List = forwardRef<ScrollView, ListProps>(
@@ -60,6 +76,13 @@ export const SectionHeader: FunctionComponent<ViewProps> = ({children, style, ..
   <View style={[styles.sectionHeader, style]} {...props}>
     {children}
   </View>
+)
+
+export const SectionHeaderClickable: FunctionComponent<SectionHeaderProps> = ({title, style, onPress, arrowColor = Colors.gray1, withArrow = false, ...props}) => (
+  <TouchableOpacity style={[styles.sectionHeader, style]} onPress={onPress} {...props}>
+    <H2>{title}</H2>
+    {withArrow && <Icons.chevron style={styles.arrow} color={arrowColor} size={20} />}
+  </TouchableOpacity>
 )
 
 export const Section: FunctionComponent<ViewProps> = ({children, style, ...props}) => (

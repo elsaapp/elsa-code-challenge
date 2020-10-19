@@ -8,7 +8,7 @@ import {Toggle} from '../Toggle'
 
 const styles = StyleSheet.create({
   listItem: {
-    height: 56,
+    // height: 56,
     alignItems: 'center',
     alignSelf: 'stretch',
     flexDirection: 'row',
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   rightSide: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     alignItems: 'center',
   },
   pressedItem: {
@@ -38,7 +38,6 @@ const styles = StyleSheet.create({
 export type ListItemProps = {
   arrowColor?: string
   checked?: boolean
-  detailsText?: string
   detailsTextStyle?: StyleProp<TextStyle>
   icon?: React.ReactElement
   isFirst?: boolean
@@ -46,8 +45,14 @@ export type ListItemProps = {
   onToggle?: (checked: boolean) => void
   opacityFeedback?: boolean
   style?: StyleProp<ViewStyle>
-  subtitle?: string
-  title?: string
+  name: string
+  substance: string
+  strength?: string
+  dosage: string
+  administratedVia?: string
+  addedAt?: string
+  startingDate?: string
+
   titleStyle?: StyleProp<TextStyle>
   withArrow?: boolean
 }
@@ -55,16 +60,20 @@ export const ListItem: React.FC<ListItemProps> = ({
   arrowColor = Colors.gray1,
   checked,
   children,
-  detailsText,
   detailsTextStyle,
   icon,
   isFirst = false,
   onPress,
   onToggle,
+  name,
+  substance,
+  strength,
+  dosage,
+  administratedVia,
+  addedAt,
+  startingDate,
   opacityFeedback = true,
   style,
-  subtitle,
-  title,
   titleStyle,
   withArrow = false,
 }) => (
@@ -78,14 +87,22 @@ export const ListItem: React.FC<ListItemProps> = ({
       <>
         <View style={styles.leftSide}>
           <Body bold color={Colors.black} style={titleStyle}>
-            {title}
+            {name}
           </Body>
-          {subtitle && <Body color={Colors.gray1}>{subtitle}</Body>}
+          {substance && <Body color={Colors.gray1}>{substance}</Body>}
+          {strength && <Body color={Colors.gray1}>{strength}</Body>}
+          {startingDate && <Body color={Colors.gray1}>Started at {startingDate}</Body>}
+          {addedAt && <Body color={Colors.gray1}>Added in {addedAt.substring(0, 10)}</Body>}
         </View>
         <View style={styles.rightSide}>
-          {detailsText && (
+          {dosage && (
             <Body color={Colors.blue3} style={detailsTextStyle}>
-              {detailsText}
+              {dosage}
+            </Body>
+          )}
+          {administratedVia && (
+            <Body color={Colors.blue3} style={detailsTextStyle}>
+              {administratedVia}
             </Body>
           )}
           {icon && icon}
