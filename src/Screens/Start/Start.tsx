@@ -1,5 +1,5 @@
 import React from 'react'
-import {Platform, ScrollView, StyleSheet, View} from 'react-native'
+import {Alert, Platform, ScrollView, StyleSheet, View} from 'react-native'
 import {useNavigation} from '@react-navigation/native'
 import {SafeAreaView} from 'react-native-safe-area-context'
 import {useSelector} from 'react-redux'
@@ -32,25 +32,24 @@ export const Start: React.FC = () => {
   const navigation = useNavigation()
   return (
     <SafeAreaView style={styles.background} edges={['top']}>
+      {Platform.OS === 'ios' && (
+        <MoreButton
+          options={['Settings', 'Coming soon']}
+          onOptionPress={option => {
+            switch (option) {
+              case 'Settings':
+                navigation.navigate('changeName', {
+                  name: name,
+                })
+                break
+              case 'Coming soon':
+                Alert.alert('Coming soon', 'More features will be developed soon')
+            }
+          }}
+          width={200}
+        />
+      )}
       <ScrollView style={styles.content}>
-        {Platform.OS === 'ios' && (
-          <View>
-            <MoreButton
-              options={['Settings']}
-              onOptionPress={option => {
-                switch (option) {
-                  case 'Settings':
-                    navigation.navigate('changeName', {
-                      name: name,
-                    })
-                    break
-                }
-              }}
-              width={200}
-            />
-          </View>
-        )}
-
         <View style={styles.info}>
           <View>
             <H1 style={{textAlign: 'center'}}>Hello {name}!</H1>

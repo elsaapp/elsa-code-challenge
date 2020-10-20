@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react'
 import Entypo from 'react-native-vector-icons/Entypo'
-import {Animated, TouchableOpacity, View} from 'react-native'
+import {Animated, TouchableOpacity, View, ViewStyle} from 'react-native'
 import {COLORS} from '~/Style/Colors'
 import {Body} from '~/Components'
 import {animateService} from '~/logic/animate/Animate.service'
@@ -9,6 +9,19 @@ interface Props {
   onOptionPress: (option?: string) => any
   options: string[]
   width?: number
+}
+
+const shadow = {
+  DOWN: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 4.84,
+    elevation: 2,
+  } as ViewStyle,
 }
 
 export function MoreButton(props: Props) {
@@ -39,7 +52,7 @@ export function MoreButton(props: Props) {
       }}>
       <View>
         <Animated.View style={{transform: [{rotateZ: angle}], zIndex: 120}}>
-          <Entypo name="dots-three-horizontal" onPress={() => showMenu(!menuVisible)} size={25} />
+          <Entypo name="dots-three-horizontal" onPress={() => showMenu(!menuVisible)} size={20} />
         </Animated.View>
         {menuVisible && (
           <Animated.View
@@ -52,25 +65,25 @@ export function MoreButton(props: Props) {
                 borderTopLeftRadius: 24,
                 borderBottomLeftRadius: 24,
                 width,
-                paddingVertical: 10,
-                paddingHorizontal: 20,
+                paddingVertical: 8,
+                paddingHorizontal: 16,
                 opacity,
               },
+              shadow.DOWN,
             ]}>
             {options.map(option => (
               <TouchableOpacity
                 key={option}
                 style={{
-                  padding: 5,
+                  padding: 4,
+                  backgroundColor: COLORS.wellbeing_light,
                   width: '100%',
                 }}
                 onPress={() => {
                   onOptionPress(option)
                   showMenu(false)
                 }}>
-                <Body variant={'medium'} style={{textTransform: 'uppercase'}}>
-                  {option}
-                </Body>
+                <Body style={{textTransform: 'uppercase'}}>{option}</Body>
               </TouchableOpacity>
             ))}
           </Animated.View>
