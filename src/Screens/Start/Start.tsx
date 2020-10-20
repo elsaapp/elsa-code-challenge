@@ -1,5 +1,5 @@
 import React from 'react'
-import {StyleSheet, View} from 'react-native'
+import {Platform, StyleSheet, View} from 'react-native'
 import {useNavigation} from '@react-navigation/native'
 import {SafeAreaView} from 'react-native-safe-area-context'
 import {useSelector} from 'react-redux'
@@ -8,6 +8,7 @@ import {H1} from '../../Components/Typography'
 import {nameSelector} from '../../Store/Selectors/User'
 import {AddMedication} from '../../Components/AddMedication/AddMedication'
 import {MoreButton} from '~/Components/Buttons/More'
+import {PrimaryBlueButton} from '~/Components'
 
 const styles = StyleSheet.create({
   background: {
@@ -35,21 +36,34 @@ export const Start: React.FC = () => {
   return (
     <SafeAreaView style={styles.background} edges={['top']}>
       <View style={styles.content}>
-        <MoreButton
-          options={['Settings']}
-          onOptionPress={option => {
-            switch (option) {
-              case 'Settings':
+        {Platform.OS === 'ios' && (
+          <MoreButton
+            options={['Settings']}
+            onOptionPress={option => {
+              switch (option) {
+                case 'Settings':
+                  navigation.navigate('changeName', {
+                    name: name,
+                  })
+                  break
+              }
+            }}
+            width={200}
+          />
+        )}
+
+        <View style={styles.info}>
+          <H1 style={{textAlign: 'center'}}>Hello {name}!</H1>
+          {Platform.OS === 'android' && (
+            <PrimaryBlueButton
+              title={'Settings'}
+              onPress={() => {
                 navigation.navigate('changeName', {
                   name: name,
                 })
-                break
-            }
-          }}
-          width={200}
-        />
-        <View style={styles.info}>
-          <H1 style={{textAlign: 'center'}}>Hello {name}!</H1>
+              }}
+            />
+          )}
         </View>
         <View style={{paddingHorizontal: 24}}>
           <AddMedication />
