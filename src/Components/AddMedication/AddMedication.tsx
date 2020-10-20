@@ -6,6 +6,7 @@ import {TextInput} from '../TextInputs'
 import {addMedication} from '../../Store/Actions/actions'
 import {PrimaryBlueButton} from '../Buttons/Buttons'
 import {useDispatch} from 'react-redux'
+import {H3} from '~/Components'
 
 const styles = StyleSheet.create({
   BUTTON: {
@@ -14,9 +15,9 @@ const styles = StyleSheet.create({
   },
   CONTAINER: {
     paddingHorizontal: 10,
-    borderWidth: 1,
   },
   TEXT: {
+    alignContent: 'center',
     textAlign: 'center',
     paddingBottom: 24,
   },
@@ -34,7 +35,8 @@ export const AddMedication = () => {
 
   return (
     <View style={styles.CONTAINER}>
-      <Body style={styles.TEXT}>Add Medication</Body>
+
+      <H3 style={styles.TEXT}>Add Medication</H3>
       <View style={{flexDirection: 'row', alignContent: 'space-between'}}>
         <Body style={styles.INPUT_TEXT}>Brand Name:</Body>
         <TextInput style={{width: 200, marginLeft: 6}} value={name} onChangeText={setName} />

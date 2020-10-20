@@ -67,6 +67,7 @@ export const CurrentMedication: React.FC = () => {
           renderItem={({item: medication}) => (
             <ListItem
               subtitle={medication?.substance}
+              style={{paddingHorizontal: 20}}
               title={medication?.name}
               detailsText={`Started: ${medication?.addedAt}`}
               detailsTextStyle={{color: COLORS.black}}
