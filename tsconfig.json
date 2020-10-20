@@ -15,7 +15,6 @@
     "paths": {
       "~/*": ["./src/*"],
       "#assets/*": ["./assets/*"]
-    },
-    "include": ["src/**/*"]
+    }
   }
 }

@@ -7,7 +7,7 @@ import {animateService} from '~/logic/animate/Animate.service'
 
 interface Props {
   onOptionPress: (option?: string) => any
-  options?: string[]
+  options: string[]
   width?: number
 }
 
