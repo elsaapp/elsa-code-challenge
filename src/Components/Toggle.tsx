@@ -1,27 +1,27 @@
-import React from "react";
-import { StyleSheet, View } from "react-native";
-import Animated, { Easing } from "react-native-reanimated";
-import { COLORS } from "~/Style/Colors";
-import { useTransition } from "~/Hooks/UseTransition";
-import { ButtonWrapper, EXTENDED_HIT_SLOP } from "./Buttons";
+import React from 'react'
+import {StyleSheet, View} from 'react-native'
+import Animated, {Easing} from 'react-native-reanimated'
+import {COLORS} from '~/Style/Colors'
+import {useTransition} from '~/Hooks/UseTransition'
+import {ButtonWrapper, EXTENDED_HIT_SLOP} from './Buttons'
 
-const { interpolate } = Animated;
+const {interpolate} = Animated
 
 const styles = StyleSheet.create({
   track: {
     width: 56,
     height: 32,
     borderRadius: 16,
-    alignItems: "stretch",
+    alignItems: 'stretch',
     backgroundColor: COLORS.gray3,
-    overflow: "hidden",
+    overflow: 'hidden',
   },
   trackOn: {
     flex: 1,
     backgroundColor: COLORS.green3,
   },
   dot: {
-    position: "absolute",
+    position: 'absolute',
     left: 4,
     top: 4,
     width: 24,
@@ -29,26 +29,26 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     backgroundColor: COLORS.white,
   },
-});
+})
 
 type ToggleProps = {
-  checked: boolean;
-  onToggle: (checked: boolean) => void;
-};
-export const Toggle = ({ checked, onToggle }: ToggleProps) => {
+  checked: boolean
+  onToggle: (checked: boolean) => void
+}
+export const Toggle = ({checked, onToggle}: ToggleProps) => {
   const isCheckedAnimation = useTransition(checked ? 1 : 0, {
     duration: 300,
     easing: Easing.inOut(Easing.ease),
-  });
+  })
 
-  const opacity = isCheckedAnimation;
+  const opacity = isCheckedAnimation
   const translateX = interpolate(isCheckedAnimation, {
     inputRange: [0, 1],
     outputRange: [0, 24],
-  });
+  })
   const onPress = () => {
-    onToggle(!checked);
-  };
+    onToggle(!checked)
+  }
   return (
     <ButtonWrapper onPress={onPress} hitSlop={EXTENDED_HIT_SLOP}>
       <View style={styles.track}>
@@ -74,5 +74,5 @@ export const Toggle = ({ checked, onToggle }: ToggleProps) => {
         ]}
       />
     </ButtonWrapper>
-  );
-};
+  )
+}

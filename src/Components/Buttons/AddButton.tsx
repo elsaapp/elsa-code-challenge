@@ -1,8 +1,8 @@
 import React from 'react'
 import {StyleProp, StyleSheet, ViewStyle, View, Text} from 'react-native'
-import {Font, FontWeight} from '../../Style/Font'
+import {Font, FontWeight} from '~/Style/Font'
 import {ButtonWrapper} from './Buttons'
-import {COLORS} from '../../Style/Colors'
+import {COLORS} from '~/Style/Colors'
 
 const styles = StyleSheet.create({
   button: {

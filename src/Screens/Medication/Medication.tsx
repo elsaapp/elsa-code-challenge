@@ -1,13 +1,12 @@
 import React from 'react'
 import {StyleSheet, View} from 'react-native'
-import {Body, H1} from '../../Components/Typography/'
 import {COLORS} from '~/Style/Colors'
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native'
 import {SafeAreaView} from 'react-native-safe-area-context'
 
 import {BackButton} from '~/Navigation'
 import {CurrentMedicationStackParams} from '~/Navigation/Navigation'
-import {PrimaryBlueButton} from '~/Components'
+import {PrimaryBlueButton, Body, H1} from '~/Components'
 import {useDispatch} from 'react-redux'
 import {archiveMedication, deleteMedication} from '~/Store/Actions'
 

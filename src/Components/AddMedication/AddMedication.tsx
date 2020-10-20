@@ -1,12 +1,9 @@
 import React, {useState} from 'react'
 
 import {StyleSheet, View} from 'react-native'
-import {Body} from '../Typography/Body'
-import {TextInput} from '../TextInputs'
-import {addMedication} from '../../Store/Actions/actions'
-import {PrimaryBlueButton} from '../Buttons/Buttons'
+import {addMedication} from '~/Store/Actions'
+import {PrimaryBlueButton, H3, Body, TextInput} from '~/Components'
 import {useDispatch} from 'react-redux'
-import {H3} from '~/Components'
 
 const styles = StyleSheet.create({
   BUTTON: {
@@ -35,7 +32,6 @@ export const AddMedication = () => {
 
   return (
     <View style={styles.CONTAINER}>
-
       <H3 style={styles.TEXT}>Add Medication</H3>
       <View style={{flexDirection: 'row', alignContent: 'space-between'}}>
         <Body style={styles.INPUT_TEXT}>Brand Name:</Body>

@@ -44,7 +44,7 @@ export const user = (
       return <MedicationsState>{
         ...state,
         medications: [
-          ...state.medications,
+          ...state.medications.concat(),
           {
             id: uuidv4(),
             name: medicationName,
@@ -63,7 +63,7 @@ export const user = (
       return <MedicationsState>{
         ...state,
         history: [
-          ...state.history,
+          ...state.history.concat(),
           {
             id: id,
             name: medicationName,

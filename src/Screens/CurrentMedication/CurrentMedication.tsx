@@ -1,13 +1,12 @@
 import React, {useEffect, useState} from 'react'
 import {FlatList, StyleSheet, View} from 'react-native'
-import {Body, H1} from '../../Components/Typography/'
 import {COLORS} from '~/Style/Colors'
 import {useNavigation} from '@react-navigation/native'
 import {useSelector} from 'react-redux'
 import {medicationsSelector} from '~/Store/Selectors'
 import {SafeAreaView} from 'react-native-safe-area-context'
 import {currentMedicationService as service} from './CurrentMedication.service'
-import {ListItem} from '~/Components'
+import {ListItem, Body, H1} from '~/Components'
 import {IMedication} from '~/Store'
 
 const styles = StyleSheet.create({
@@ -29,7 +28,6 @@ export const CurrentMedication: React.FC = () => {
 
   useEffect(() => {
     service.load(fetchMedication).then(s => {
-      // @ts-ignore
       setMedications(s)
     })
   }, [fetchMedication])
@@ -64,6 +62,7 @@ export const CurrentMedication: React.FC = () => {
         <FlatList
           data={medications}
           ListEmptyComponent={isEmpty}
+          keyExtractor={item => item.id}
           renderItem={({item: medication}) => (
             <ListItem
               subtitle={medication?.substance}

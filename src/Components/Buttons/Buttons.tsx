@@ -9,8 +9,8 @@ import {
   ViewStyle,
   GestureResponderEvent,
 } from 'react-native'
-import {COLORS} from '../../Style/Colors'
-import {Font, FontWeight} from '../../Style/Font'
+import {COLORS} from '~/Style/Colors'
+import {Font, FontWeight} from '~/Style/Font'
 // import {WhiteSnakeSpinner} from '../Spinners'
 
 const styles = StyleSheet.create({

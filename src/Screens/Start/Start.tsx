@@ -1,14 +1,11 @@
 import React from 'react'
-import {Platform, StyleSheet, View} from 'react-native'
+import {Platform, ScrollView, StyleSheet, View} from 'react-native'
 import {useNavigation} from '@react-navigation/native'
 import {SafeAreaView} from 'react-native-safe-area-context'
 import {useSelector} from 'react-redux'
-import {COLORS} from '../../Style/Colors'
-import {H1} from '../../Components/Typography'
-import {nameSelector} from '../../Store/Selectors/User'
-import {AddMedication} from '../../Components/AddMedication/AddMedication'
-import {MoreButton} from '~/Components/Buttons/More'
-import {PrimaryBlueButton} from '~/Components'
+import {COLORS} from '~/Style/Colors'
+import {H1, PrimaryBlueButton, AddMedication, MoreButton} from '~/Components'
+import {nameSelector} from '~/Store/Selectors'
 
 const styles = StyleSheet.create({
   background: {
@@ -35,40 +32,46 @@ export const Start: React.FC = () => {
   const navigation = useNavigation()
   return (
     <SafeAreaView style={styles.background} edges={['top']}>
-      <View style={styles.content}>
+      <ScrollView style={styles.content}>
         {Platform.OS === 'ios' && (
-          <MoreButton
-            options={['Settings']}
-            onOptionPress={option => {
-              switch (option) {
-                case 'Settings':
-                  navigation.navigate('changeName', {
-                    name: name,
-                  })
-                  break
-              }
-            }}
-            width={200}
-          />
+          <View>
+            <MoreButton
+              options={['Settings']}
+              onOptionPress={option => {
+                switch (option) {
+                  case 'Settings':
+                    navigation.navigate('changeName', {
+                      name: name,
+                    })
+                    break
+                }
+              }}
+              width={200}
+            />
+          </View>
         )}
 
         <View style={styles.info}>
-          <H1 style={{textAlign: 'center'}}>Hello {name}!</H1>
+          <View>
+            <H1 style={{textAlign: 'center'}}>Hello {name}!</H1>
+          </View>
           {Platform.OS === 'android' && (
-            <PrimaryBlueButton
-              title={'Settings'}
-              onPress={() => {
-                navigation.navigate('changeName', {
-                  name: name,
-                })
-              }}
-            />
+            <View>
+              <PrimaryBlueButton
+                title={'Settings'}
+                onPress={() => {
+                  navigation.navigate('changeName', {
+                    name: name,
+                  })
+                }}
+              />
+            </View>
           )}
         </View>
         <View style={{paddingHorizontal: 24}}>
           <AddMedication />
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   )
 }

@@ -1,12 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import {FlatList, StyleSheet, View} from 'react-native'
-import {Body, H1} from '../../Components/Typography'
 import {SafeAreaView} from 'react-native-safe-area-context'
-import {COLORS} from '../../Style/Colors'
+import {COLORS} from '~/Style/Colors'
 import {useSelector} from 'react-redux'
 import {historySelector} from '~/Store/Selectors'
 import {medicationHistoryService as service} from './MedicationHistory.service'
-import {ListItem} from '~/Components'
+import {ListItem, Body, H1} from '~/Components'
 import {IMedication} from '~/Store'
 
 const styles = StyleSheet.create({
@@ -30,6 +29,8 @@ export const MedicationHistory: React.FC = () => {
     // @ts-ignore
     service.load(fetchMedication).then(s => setHistory(s))
   }, [fetchMedication])
+
+  console.log(seeHistory)
 
   function isEmpty() {
     return (
@@ -60,6 +61,7 @@ export const MedicationHistory: React.FC = () => {
         <FlatList
           data={seeHistory}
           ListEmptyComponent={isEmpty}
+          keyExtractor={item => item.id}
           renderItem={({item: medications}) => (
             <ListItem
               subtitle={medications.substance}
