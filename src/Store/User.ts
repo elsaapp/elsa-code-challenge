@@ -1,3 +1,4 @@
+import 'react-native-get-random-values'
 import {RootAction} from '~/Store/Actions'
 // @ts-ignore
 import {v4 as uuidv4} from 'uuid'
