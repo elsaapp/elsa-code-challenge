@@ -54,7 +54,7 @@ export const AddMedication = () => {
         <TextInput style={{width: 200}} value={administered} onChangeText={setAdministered} />
       </View>
       <View style={{paddingBottom: 10}}>
-        <Body style={styles.INPUT_TEXT}> Administered can be orally, injected, absorbed etc</Body>
+        <Body style={styles.TEXT}> Administered can be orally, injected, absorbed etc</Body>
       </View>
       <View style={{paddingBottom: 20}}>
         <PrimaryBlueButton

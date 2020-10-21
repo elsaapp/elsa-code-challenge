@@ -41,10 +41,10 @@ export const user = (
     case 'ADD_MEDICATION': {
       const {medicationName, substance, finished, administered, dosage} = action.payload
       const dateFromNow = new Date()
-      return <MedicationsState>{
+      return {
         ...state,
         medications: [
-          ...state.medications.concat(),
+          ...state.medications,
           {
             id: uuidv4(),
             name: medicationName,
@@ -55,15 +55,16 @@ export const user = (
             addedAt: dayjs(dateFromNow).format('DD/MM/YYYY').toString(),
           },
         ],
-      }
+      } as MedicationsState
     }
-    case 'ARCHIVE_MEDICATION':
+    case 'ARCHIVE_MEDICATION': {
       const {id, medicationName, substance, finished, administered, dosage, date} = action.payload
       const dateFromNow = new Date()
-      return <MedicationsState>{
+      return {
         ...state,
+        medications: state.medications.filter(m => m.id !== id),
         history: [
-          ...state.history.concat(),
+          ...state.history,
           {
             id: id,
             name: medicationName,
@@ -75,13 +76,7 @@ export const user = (
             endedAt: dayjs(dateFromNow).format('DD/MM/YYYY').toString(),
           },
         ],
-      }
-    case 'DELETE_MEDICATION': {
-      const {id} = action.payload
-      return {
-        ...state,
-        medications: state.medications.filter(m => m.id !== id),
-      }
+      } as MedicationsState
     }
     case 'CLEAN_STATE':
       return defaultUser()
