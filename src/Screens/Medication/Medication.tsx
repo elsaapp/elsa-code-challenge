@@ -9,7 +9,7 @@ import {BackButton} from '~/Navigation'
 import {CurrentMedicationStackParams} from '~/Navigation/Navigation'
 import {PrimaryBlueButton} from '~/Components'
 import {useDispatch} from 'react-redux'
-import {archiveMedication, deleteMedication} from '~/Store/Actions'
+import {archiveMedication} from '~/Store/Actions'
 
 const styles = StyleSheet.create({
   CONTAINER: {
@@ -86,7 +86,6 @@ export const MedicationInfo: React.FC = () => {
                 medication.addedAt
               )
             )
-            dispatch(deleteMedication(medication.id))
             navigation.reset({
               stale: true,
               routes: [{name: 'medication'}],

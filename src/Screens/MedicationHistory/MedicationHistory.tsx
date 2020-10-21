@@ -63,7 +63,6 @@ export const MedicationHistory: React.FC = () => {
           renderItem={({item: medications}) => (
             <ListItem
               subtitle={medications.substance}
-              style={{paddingHorizontal: 20}}
               title={medications.name}
               detailsText={`Started: ${medications?.addedAt}`}
               detailsSecondLine={`Ended: ${medications?.endedAt}`}

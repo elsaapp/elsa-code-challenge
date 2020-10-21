@@ -15,11 +15,11 @@ export const addMedication = createAction(
   ) => action({medicationName, substance, finished, administered, dosage})
 )
 
-export const deleteMedication = createAction('DELETE_MEDICATION', action => (id: string) =>
-  action({id})
+export const pauseMedication = createAction('PAUSE_MEDICATION', action => (paused: boolean) =>
+  action({paused})
 )
 
-export const updateMedication = createAction('DELETE_MEDICATION', action => (id: string) =>
+export const deleteMedication = createAction('DELETE_MEDICATION', action => (id: string) =>
   action({id})
 )
 
