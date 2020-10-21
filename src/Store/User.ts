@@ -58,14 +58,15 @@ export const user = (
       }
     }
     case 'ARCHIVE_MEDICATION':
-      const {medicationName, substance, finished, administered, dosage, date} = action.payload
+      const {id, medicationName, substance, finished, administered, dosage, date} = action.payload
       const dateFromNow = new Date()
       return <MedicationsState>{
         ...state,
+        medications: state.medications.filter(m => m.id !== id),
         history: [
           ...state.history,
           {
-            id: uuidv4(),
+            id: id,
             name: medicationName,
             substance: substance,
             finished: finished,
@@ -76,10 +77,6 @@ export const user = (
           },
         ],
       }
-    case 'DELETE_MEDICATION':
-      // const id = action.payload
-      // return state.medications.filter(m => m.id === id) Ran out of time to fix
-      break
     case 'PAUSE_MEDICATION':
       const {paused} = action.payload
       return <MedicationsState>{
