@@ -14,10 +14,9 @@ import {archiveMedication, deleteMedication} from '~/Store/Actions'
 const styles = StyleSheet.create({
   CONTAINER: {
     flex: 1,
-    marginHorizontal: 10,
   },
   INFO: {
-    marginHorizontal: 50,
+    marginHorizontal: 24,
     marginVertical: 24,
     alignItems: 'center',
   },
@@ -73,34 +72,27 @@ export const MedicationInfo: React.FC = () => {
           <Body style={styles.TEXT_HEADER}>Administration Method: </Body>
           <Body style={styles.TEXT}>{medication.administered}</Body>
         </View>
-        <View
-          style={{
-            paddingVertical: 30,
-            width: 200,
-            alignSelf: 'center',
-          }}>
-          <PrimaryBlueButton
-            title={'End Medication'}
-            onPress={() => {
-              dispatch(
-                archiveMedication(
-                  medication.id,
-                  medication.name,
-                  medication.substance,
-                  true,
-                  medication.administered,
-                  String(medication.dosage),
-                  medication.addedAt
-                )
+        <PrimaryBlueButton
+          title={'End Medication'}
+          onPress={() => {
+            dispatch(
+              archiveMedication(
+                medication.id,
+                medication.name,
+                medication.substance,
+                true,
+                medication.administered,
+                String(medication.dosage),
+                medication.addedAt
               )
-              dispatch(deleteMedication(medication.id))
-              navigation.reset({
-                stale: true,
-                routes: [{name: 'medication'}],
-              })
-            }}
-          />
-        </View>
+            )
+            dispatch(deleteMedication(medication.id))
+            navigation.reset({
+              stale: true,
+              routes: [{name: 'medication'}],
+            })
+          }}
+        />
       </View>
     </>
   )
