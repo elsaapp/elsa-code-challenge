@@ -63,7 +63,7 @@ export const user = (
       return <MedicationsState>{
         ...state,
         history: [
-          ...state.medications,
+          ...state.history,
           {
             id: uuidv4(),
             name: medicationName,
