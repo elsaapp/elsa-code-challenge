@@ -7,3 +7,7 @@ export const changeName = createAction('CHANGE_NAME', action => (name: string) =
 export const addMedication = createAction('ADD_MEDICATION', action => (medicationName: string) =>
   action({medicationName})
 )
+
+export const removeMedication = createAction('REMOVE_MEDICATION', action => (medication: string) =>
+  action({medication})
+)

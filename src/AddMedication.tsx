@@ -3,8 +3,8 @@ import {StyleSheet, View, Text} from 'react-native'
 import {useDispatch} from 'react-redux'
 import {PrimaryBlueButton, TextInput} from '~/Components'
 import {Routes} from '~/Navigation/Routes'
-import type {ChangeNameRouteProp, RootNavigation} from '~/Root'
-import {changeName} from '~/Store/Actions'
+import type {AddMedicationRouteProp, RootNavigation} from '~/Root'
+import {addMedication} from '~/Store/Actions'
 
 const styles = StyleSheet.create({
   container: {
@@ -20,23 +20,23 @@ const styles = StyleSheet.create({
   },
 })
 
-type ChangeNameProps = {
+type AddMedicationProps = {
   navigation: RootNavigation
-  route: ChangeNameRouteProp
+  route: AddMedicationRouteProp
 }
-export const ChangeName: React.FC<ChangeNameProps> = ({navigation, route}) => {
+export const AddMedication: React.FC<AddMedicationProps> = ({navigation, route}) => {
   const dispatch = useDispatch()
-  const [name, setName] = useState(route.params.userName)
+  const [medication, setMedication] = useState('')
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Name</Text>
-      <TextInput value={name} onChangeText={setName} />
+      <Text style={styles.text}>Medication name</Text>
+      <TextInput value={medication} onChangeText={setMedication} />
       <PrimaryBlueButton
         style={styles.button}
-        title={'Update name'}
+        title={'Update'}
         onPress={() => {
-          dispatch(changeName(name))
-          navigation.setOptions({title: name})
+          dispatch(addMedication(medication))
+          navigation.setOptions({title: medication})
           navigation.navigate(Routes.START)
         }}
       />
