@@ -1,12 +1,12 @@
 import React from 'react'
-import {StyleSheet, View} from 'react-native'
+import {StyleSheet, View, Text, Button} from 'react-native'
 import {SafeAreaView} from 'react-native-safe-area-context'
-import {useSelector} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
 import {Colors} from '~/Colors'
-import {Body, H1, SecondaryBlueButton} from '~/Components'
+import {Body, H1, H2, SecondaryBlueButton} from '~/Components'
 import {Routes} from '~/Navigation/Routes'
 import type {RootNavigation} from '~/Root'
-import {nameSelector} from '~/Store/Selectors/User'
+import {nameSelector, medicationsSelector} from '~/Store/Selectors/User'
 
 const styles = StyleSheet.create({
   background: {
@@ -21,36 +21,57 @@ const styles = StyleSheet.create({
     marginHorizontal: 24,
     marginVertical: 24,
     alignItems: 'flex-start',
+    borderBottomColor: 'black',
+    borderBottomWidth: 1,
+    display: 'flex',
   },
-  help: {
   medications: {
     marginHorizontal: 24,
     flex: 1,
     flexDirection: 'column',
   },
+  medicationList: {
+    fontSize: 20,
   },
+  button: {
+    marginBottom: 10,
+  },
+  listRow: {
+  display: 'flex',
+  flexDirection: 'row',
+    justifyContent: 'space-between',
+  }
 })
 
 type StartProps = {
   navigation: RootNavigation
 }
 export const Start: React.FC<StartProps> = ({navigation}) => {
-  const name = useSelector(nameSelector)
+  const dispatch = useDispatch()
+  const userName = useSelector(nameSelector)
+  const medication = useSelector(medicationsSelector)
+  const getSortedList = () => {
+    medication.sort((a, b) => a.name.localeCompare(b.name))
+    return medication.map(item => {
+      return (
+        <View key={item.name} style={styles.listRow}>
+          <View><Text>{item.name}</Text></View>
+        </View>
+      )
+    })
+  }
   return (
     <SafeAreaView style={styles.background} edges={['top']}>
       <View style={styles.content}>
         <View style={styles.info}>
-          <H1>Hello {name}!</H1>
+          <H1>Hello {userName}!</H1>
           <SecondaryBlueButton
+            style={styles.button}
             title={'Change name'}
-            onPress={() => navigation.navigate(Routes.CHANGE_NAME, {name})}
+            onPress={() => navigation.navigate(Routes.CHANGE_NAME, {userName})}
           />
         </View>
-        <Body style={styles.help}>{`Hmm. It would be great if I had a list of my medications here... 🤔
-        
-        
-Please have a look at src/Start.tsx to get started!
-👩‍💻👨‍💻`}</Body>
+
         <Body style={styles.medications}>
           <View>
             <SecondaryBlueButton
@@ -61,6 +82,13 @@ Please have a look at src/Start.tsx to get started!
                 navigation.navigate(Routes.ADD_MEDICATION, {title: 'Add medication'})
               }}
             />
+            {medication.length > 0 ? (
+              getSortedList()
+            ) : (
+              <>
+                <H2 style={styles.medicationList}>You haven't added any medications yet...</H2>
+              </>
+            )}
           </View>
         </Body>
       </View>

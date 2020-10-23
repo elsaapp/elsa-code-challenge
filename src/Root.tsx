@@ -16,7 +16,7 @@ import { AddMedication } from './AddMedication'
 
 export type RootStackParamList = {
   [Routes.START]: undefined
-  [Routes.CHANGE_NAME]: {name: string}
+  [Routes.CHANGE_NAME]: {userName: string}
   [Routes.ADD_MEDICATION]: {title: string}
 }
 const Stack = createStackNavigator<RootStackParamList>()
@@ -37,7 +37,9 @@ const RootStack: React.FC = () => {
         name={Routes.CHANGE_NAME}
         component={ChangeName}
         options={({route}) => ({
-          title: route.params.name,
+          title: route.params.userName
+        })}
+      />
          <Stack.Screen
         name={Routes.ADD_MEDICATION}
         component={AddMedication}
