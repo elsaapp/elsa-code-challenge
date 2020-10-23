@@ -23,7 +23,11 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   help: {
+  medications: {
     marginHorizontal: 24,
+    flex: 1,
+    flexDirection: 'column',
+  },
   },
 })
 
@@ -47,6 +51,18 @@ export const Start: React.FC<StartProps> = ({navigation}) => {
         
 Please have a look at src/Start.tsx to get started!
 👩‍💻👨‍💻`}</Body>
+        <Body style={styles.medications}>
+          <View>
+            <SecondaryBlueButton
+              style={styles.button}
+              title={'Add medication'}
+              onPress={() => {
+                navigation.setOptions({title: 'Add medication'})
+                navigation.navigate(Routes.ADD_MEDICATION, {title: 'Add medication'})
+              }}
+            />
+          </View>
+        </Body>
       </View>
     </SafeAreaView>
   )
