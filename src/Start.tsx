@@ -7,6 +7,7 @@ import {Body, H1, H2, SecondaryBlueButton} from '~/Components'
 import {Routes} from '~/Navigation/Routes'
 import type {RootNavigation} from '~/Root'
 import {nameSelector, medicationsSelector} from '~/Store/Selectors/User'
+import {removeMedication} from '~/Store/Actions'
 
 const styles = StyleSheet.create({
   background: {
@@ -36,6 +37,9 @@ const styles = StyleSheet.create({
   button: {
     marginBottom: 10,
   },
+  deleteButton: {
+width: 20,
+  },
   listRow: {
   display: 'flex',
   flexDirection: 'row',
@@ -56,6 +60,11 @@ export const Start: React.FC<StartProps> = ({navigation}) => {
       return (
         <View key={item.name} style={styles.listRow}>
           <View><Text>{item.name}</Text></View>
+          <SecondaryBlueButton
+            style={styles.button}
+            title={'Delete'}
+            onPress={() => dispatch(removeMedication(item.name))}
+          />
         </View>
       )
     })

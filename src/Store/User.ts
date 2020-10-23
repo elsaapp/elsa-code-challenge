@@ -35,6 +35,15 @@ export const user = (
         ],
       }
     }
+    case 'REMOVE_MEDICATION': {
+      const {medication} = action.payload
+      const newList = state.medications.filter(item => item.name !== medication)
+      console.log(newList)
+      return {
+        ...state,
+        medications: newList,
+      }
+    }
     case 'CLEAN_STATE':
       return defaultUser()
     default:

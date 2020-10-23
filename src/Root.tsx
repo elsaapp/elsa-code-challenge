@@ -18,12 +18,14 @@ export type RootStackParamList = {
   [Routes.START]: undefined
   [Routes.CHANGE_NAME]: {userName: string}
   [Routes.ADD_MEDICATION]: {title: string}
+  [Routes.REMOVE_MEDICATION]: {medication: string}
 }
 const Stack = createStackNavigator<RootStackParamList>()
 
 export type RootNavigation = StackNavigationProp<RootStackParamList>
 export type ChangeNameRouteProp = RouteProp<RootStackParamList, Routes.CHANGE_NAME>
 export type AddMedicationRouteProp = RouteProp<RootStackParamList, Routes.ADD_MEDICATION>
+export type RemoveMedicationRouteProp = RouteProp<RootStackParamList, Routes.REMOVE_MEDICATION>
 
 const RootStack: React.FC = () => {
   return (
