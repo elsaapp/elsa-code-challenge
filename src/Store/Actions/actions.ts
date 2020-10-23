@@ -8,4 +8,6 @@ export const addMedication = createAction('ADD_MEDICATION', action => (medicatio
   action({medicationName})
 )
 
-export const removeMedication = createAction('REMOVE_MEDICATION', action => (medication: string) => action({medication}))
+export const removeMedication = createAction('REMOVE_MEDICATION', action => (medication: string) =>
+  action({medication})
+)

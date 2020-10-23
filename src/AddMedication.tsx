@@ -15,8 +15,8 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
   },
   text: {
-    fontSize: 10,
-    margin: 5
+    fontSize: 15,
+    margin: 5,
   },
 })
 

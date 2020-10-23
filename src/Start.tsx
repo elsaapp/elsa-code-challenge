@@ -1,9 +1,9 @@
 import React from 'react'
-import {StyleSheet, View, Text, Button} from 'react-native'
+import {StyleSheet, View, Text} from 'react-native'
 import {SafeAreaView} from 'react-native-safe-area-context'
 import {useSelector, useDispatch} from 'react-redux'
 import {Colors} from '~/Colors'
-import {Body, H1, H2, SecondaryBlueButton} from '~/Components'
+import {H1, H2, SecondaryBlueButton} from '~/Components'
 import {Routes} from '~/Navigation/Routes'
 import type {RootNavigation} from '~/Root'
 import {nameSelector, medicationsSelector} from '~/Store/Selectors/User'
@@ -31,20 +31,28 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
   },
-  medicationList: {
+  noMedsText: {
     fontSize: 20,
   },
   button: {
     marginBottom: 10,
   },
   deleteButton: {
-width: 20,
+    padding: 0.5,
+    borderWidth: 0,
+  },
+  deleteButtonText: {
+    color: 'red',
   },
   listRow: {
-  display: 'flex',
-  flexDirection: 'row',
+    display: 'flex',
+    flexDirection: 'row',
     justifyContent: 'space-between',
-  }
+    alignItems: 'center',
+  },
+  itemText: {
+    fontSize: 20,
+  },
 })
 
 type StartProps = {
@@ -59,10 +67,13 @@ export const Start: React.FC<StartProps> = ({navigation}) => {
     return medication.map(item => {
       return (
         <View key={item.name} style={styles.listRow}>
-          <View><Text>{item.name}</Text></View>
+          <View>
+            <Text style={styles.itemText}>{item.name}</Text>
+          </View>
           <SecondaryBlueButton
-            style={styles.button}
-            title={'Delete'}
+            titleStyle={styles.deleteButtonText}
+            style={styles.deleteButton}
+            title={'X'}
             onPress={() => dispatch(removeMedication(item.name))}
           />
         </View>
@@ -81,7 +92,7 @@ export const Start: React.FC<StartProps> = ({navigation}) => {
           />
         </View>
 
-        <Body style={styles.medications}>
+        <View style={styles.medications}>
           <View>
             <SecondaryBlueButton
               style={styles.button}
@@ -95,11 +106,11 @@ export const Start: React.FC<StartProps> = ({navigation}) => {
               getSortedList()
             ) : (
               <>
-                <H2 style={styles.medicationList}>You haven't added any medications yet...</H2>
+                <H2 style={styles.noMedsText}>You haven't added any medications yet...</H2>
               </>
             )}
           </View>
-        </Body>
+        </View>
       </View>
     </SafeAreaView>
   )
