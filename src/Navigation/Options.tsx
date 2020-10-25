@@ -6,8 +6,8 @@ import {
 import React from 'react'
 import {Platform, StyleSheet} from 'react-native'
 import {initialWindowSafeAreaInsets} from 'react-native-safe-area-context'
-import {COLORS} from '../Style/Colors'
-import {Font, FontWeight} from '../Style/Font'
+import {COLORS} from '~/Style/Colors'
+import {Font, FontWeight} from '~/Style/Font'
 import {BackButton} from './BackButton'
 
 const styles = StyleSheet.create({

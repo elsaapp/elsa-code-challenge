@@ -66,7 +66,7 @@ export enum COLORS {
   dark_button_pressed = '#30414a',
 }
 
-export type IColors = typeof Colors
+export type IColors = typeof COLORS
 
 export const Opacity = (opacity: number) => {
   let hex = Number(Math.round(255 * opacity)).toString(16)

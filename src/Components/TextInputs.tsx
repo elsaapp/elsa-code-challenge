@@ -1,4 +1,4 @@
-import React, { forwardRef, useState, useRef, useCallback } from "react";
+import React, {forwardRef, useState, useRef, useCallback} from 'react'
 import {
   StyleSheet,
   TextInput as RNTextInput,
@@ -7,40 +7,40 @@ import {
   StyleProp,
   TextStyle,
   InteractionManager,
-} from "react-native";
-import { useFocusEffect, useIsFocused } from "@react-navigation/native";
-import { COLORS } from "../Style/Colors";
-import { Font, FontWeight } from "../Style/Font";
-import { Icons } from "../Icons/index";
-import { IconButton } from "./Buttons";
+} from 'react-native'
+import {useFocusEffect, useIsFocused} from '@react-navigation/native'
+import {COLORS} from '~/Style/Colors'
+import {Font, FontWeight} from '~/Style/Font'
+import {Icons} from '~/Icons'
+import {IconButton} from './Buttons'
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "center",
+    justifyContent: 'center',
     borderRadius: 20,
     color: COLORS.dark_blue_grey,
     backgroundColor: COLORS.gray4,
     height: 40,
-    width: "100%",
+    width: '100%',
     marginBottom: 16,
   },
   textInput: {
     paddingLeft: 16,
     color: COLORS.gray1,
-    ...Font({ fontSize: 16, fontWeight: FontWeight.regular }),
+    ...Font({fontSize: 16, fontWeight: FontWeight.regular}),
   },
-  error: { borderWidth: 2, borderColor: COLORS.red3 },
-  errorText: { color: COLORS.red2 },
-  showPassword: { position: "absolute", top: 8, right: 16 },
-});
+  error: {borderWidth: 2, borderColor: COLORS.red3},
+  errorText: {color: COLORS.red2},
+  showPassword: {position: 'absolute', top: 8, right: 16},
+})
 
 interface TextInputProps extends RNTextInputProps {
-  error?: boolean;
-  textStyle?: StyleProp<TextStyle>;
+  error?: boolean
+  textStyle?: StyleProp<TextStyle>
 }
 export const TextInput = forwardRef<RNTextInput, TextInputProps>(
-  ({ error, style, textStyle, ...props }, ref) => {
-    const isFocused = useIsFocused();
+  ({error, style, textStyle, ...props}, ref) => {
+    const isFocused = useIsFocused()
     return (
       <View style={[styles.container, style, error && styles.error]}>
         {/*https://github.com/react-navigation/react-navigation/issues/6918#issuecomment-662975183*/}
@@ -49,63 +49,54 @@ export const TextInput = forwardRef<RNTextInput, TextInputProps>(
             ref={ref}
             autoCorrect={false}
             clearButtonMode="while-editing"
-            style={[
-              styles.textInput,
-              textStyle && textStyle,
-              error && styles.errorText,
-            ]}
+            style={[styles.textInput, textStyle && textStyle, error && styles.errorText]}
             {...props}
           />
         )}
       </View>
-    );
+    )
   }
-);
+)
 
-type DelayedFocusTextInputProps = TextInputProps;
-export const DelayedFocusTextInput: React.FC<DelayedFocusTextInputProps> = (
-  props
-) => {
-  const [hasHadFocus, setHasHadFocus] = useState(false);
-  const textInputRef = useRef<RNTextInput>(null);
+type DelayedFocusTextInputProps = TextInputProps
+export const DelayedFocusTextInput: React.FC<DelayedFocusTextInputProps> = props => {
+  const [hasHadFocus, setHasHadFocus] = useState(false)
+  const textInputRef = useRef<RNTextInput>(null)
   useFocusEffect(
     useCallback(() => {
       const task = InteractionManager.runAfterInteractions(() => {
         if (!hasHadFocus && textInputRef.current) {
-          textInputRef.current.focus();
-          setHasHadFocus(true);
+          textInputRef.current.focus()
+          setHasHadFocus(true)
         }
-      });
-      return () => task.cancel();
+      })
+      return () => task.cancel()
     }, [hasHadFocus])
-  );
+  )
 
-  return <TextInput ref={textInputRef} {...props} />;
-};
+  return <TextInput ref={textInputRef} {...props} />
+}
 
-export const PasswordTextInput = forwardRef<RNTextInput, TextInputProps>(
-  (props, ref) => {
-    const [showPassword, setShowPassword] = useState(false);
-    const toggleShowPassword = () =>
-      setShowPassword((showPassword) => !showPassword);
+export const PasswordTextInput = forwardRef<RNTextInput, TextInputProps>((props, ref) => {
+  const [showPassword, setShowPassword] = useState(false)
+  const toggleShowPassword = () => setShowPassword(showPassword => !showPassword)
 
-    return (
-      <>
-        <TextInput
-          ref={ref}
-          autoCapitalize="none"
-          clearButtonMode="never"
-          secureTextEntry={!showPassword}
-          {...props}
-        />
-        <IconButton
-          icon={(showPassword ? Icons.showPassword : Icons.hidePassword)({
-            color: COLORS.gray1,
-          })}
-          style={styles.showPassword}
-          onPress={toggleShowPassword}
-        />
-      </>
-    );
-  }
-);
+  return (
+    <>
+      <TextInput
+        ref={ref}
+        autoCapitalize="none"
+        clearButtonMode="never"
+        secureTextEntry={!showPassword}
+        {...props}
+      />
+      <IconButton
+        icon={(showPassword ? Icons.showPassword : Icons.hidePassword)({
+          color: COLORS.gray1,
+        })}
+        style={styles.showPassword}
+        onPress={toggleShowPassword}
+      />
+    </>
+  )
+})

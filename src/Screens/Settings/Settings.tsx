@@ -2,13 +2,11 @@ import React, {useState} from 'react'
 import {Modal, StyleSheet, View} from 'react-native'
 import {useNavigation, RouteProp, useRoute} from '@react-navigation/native'
 import {useDispatch} from 'react-redux'
-import {PrimaryBlueButton, SecondaryBlueButton} from '../../Components/Buttons/Buttons'
-import {TextInput} from '../../Components/TextInputs'
-import {changeName, clearState} from '../../Store/Actions/actions'
+import {TextInput, Body, H1, PrimaryBlueButton, SecondaryBlueButton} from '~/Components'
+import {changeName, cleanState} from '~/Store/Actions'
 import {NavigationStackParams} from '~/Navigation/Navigation'
 import {SafeAreaView} from 'react-native-safe-area-context'
-import {COLORS} from '../../Style/Colors'
-import {Body, H1} from '../../Components/Typography'
+import {COLORS} from '~/Style/Colors'
 import {BackButton} from '~/Navigation'
 
 const styles = StyleSheet.create({
@@ -74,7 +72,7 @@ export const Settings: React.FC = () => {
                 title={'Reset'}
                 style={styles.button}
                 onPress={() => {
-                  dispatch(clearState())
+                  dispatch(cleanState())
                   navigation.goBack()
                 }}
               />

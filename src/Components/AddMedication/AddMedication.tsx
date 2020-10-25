@@ -1,10 +1,8 @@
 import React, {useState} from 'react'
 
 import {StyleSheet, View} from 'react-native'
-import {Body} from '../Typography/Body'
-import {TextInput} from '../TextInputs'
-import {addMedication} from '../../Store/Actions/actions'
-import {PrimaryBlueButton} from '../Buttons/Buttons'
+import {addMedication} from '~/Store/Actions'
+import {PrimaryBlueButton, H3, Body, TextInput} from '~/Components'
 import {useDispatch} from 'react-redux'
 
 const styles = StyleSheet.create({
@@ -14,9 +12,9 @@ const styles = StyleSheet.create({
   },
   CONTAINER: {
     paddingHorizontal: 10,
-    borderWidth: 1,
   },
   TEXT: {
+    alignContent: 'center',
     textAlign: 'center',
     paddingBottom: 24,
   },
@@ -34,7 +32,7 @@ export const AddMedication = () => {
 
   return (
     <View style={styles.CONTAINER}>
-      <Body style={styles.TEXT}>Add Medication</Body>
+      <H3 style={styles.TEXT}>Add Medication</H3>
       <View style={{flexDirection: 'row', alignContent: 'space-between'}}>
         <Body style={styles.INPUT_TEXT}>Brand Name:</Body>
         <TextInput style={{width: 200, marginLeft: 6}} value={name} onChangeText={setName} />
@@ -56,14 +54,14 @@ export const AddMedication = () => {
         <TextInput style={{width: 200}} value={administered} onChangeText={setAdministered} />
       </View>
       <View style={{paddingBottom: 10}}>
-        <Body style={styles.INPUT_TEXT}> Administered can be orally, injected, absorbed etc</Body>
+        <Body style={styles.TEXT}> Administered can be orally, injected, absorbed etc</Body>
       </View>
       <View style={{paddingBottom: 20}}>
         <PrimaryBlueButton
           style={styles.BUTTON}
           title={'Add Medicine'}
           onPress={() => {
-            dispatch(addMedication(name, substance, false, administered, dose))
+            dispatch(addMedication(name, substance, administered, dose))
             setName('')
             setDose('')
             setAdministered('')
