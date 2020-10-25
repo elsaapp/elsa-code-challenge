@@ -61,7 +61,7 @@ export const AddMedication = () => {
           style={styles.BUTTON}
           title={'Add Medicine'}
           onPress={() => {
-            dispatch(addMedication(name, substance, false, administered, dose))
+            dispatch(addMedication(name, substance, administered, dose))
             setName('')
             setDose('')
             setAdministered('')

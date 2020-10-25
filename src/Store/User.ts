@@ -39,7 +39,7 @@ export const user = (
       }
     }
     case 'ADD_MEDICATION': {
-      const {medicationName, substance, finished, administered, dosage} = action.payload
+      const {medicationName, substance, administered, dosage} = action.payload
       const dateFromNow = new Date()
       return {
         ...state,
@@ -49,30 +49,54 @@ export const user = (
             id: uuidv4(),
             name: medicationName,
             substance: substance,
-            finished: finished,
+            finished: false,
+            paused: false,
             dosage: dosage,
             administered: administered,
             addedAt: dayjs(dateFromNow).format('DD/MM/YYYY').toString(),
+            endedAt: null,
           },
         ],
       } as MedicationsState
     }
+    case 'PAUSE_MEDICATION': {
+      const {medication} = action.payload
+      const pausedMeds = state.medications.filter(m => m.id === medication.id)
+      return {
+        ...state,
+        medications: [
+          ...state.medications.filter(m => m.id !== medication.id),
+          {
+            id: pausedMeds[0].id,
+            name: pausedMeds[0].name,
+            substance: pausedMeds[0].substance,
+            finished: pausedMeds[0].finished,
+            paused: true,
+            dosage: pausedMeds[0].dosage,
+            administered: pausedMeds[0].administered,
+            addedAt: pausedMeds[0].addedAt,
+            endedAt: pausedMeds[0].endedAt,
+          },
+        ],
+        history: [...state.history],
+      } as MedicationsState
+    }
     case 'ARCHIVE_MEDICATION': {
-      const {id, medicationName, substance, finished, administered, dosage, date} = action.payload
+      const {medication} = action.payload
       const dateFromNow = new Date()
       return {
         ...state,
-        medications: state.medications.filter(m => m.id !== id),
+        medications: state.medications.filter(m => m.id !== medication.id),
         history: [
           ...state.history,
           {
-            id: id,
-            name: medicationName,
-            substance: substance,
-            finished: finished,
-            dosage: dosage,
-            administered: administered,
-            addedAt: date,
+            id: medication.id,
+            name: medication.name,
+            substance: medication.substance,
+            finished: true,
+            dosage: medication.dosage,
+            administered: medication.administered,
+            addedAt: medication.addedAt,
             endedAt: dayjs(dateFromNow).format('DD/MM/YYYY').toString(),
           },
         ],

@@ -6,11 +6,21 @@ import {SafeAreaView} from 'react-native-safe-area-context'
 
 import {BackButton} from '~/Navigation'
 import {CurrentMedicationStackParams} from '~/Navigation/Navigation'
-import {PrimaryBlueButton, Body, H1} from '~/Components'
+import {PrimaryBlueButton, Body, H1, SecondaryBlueButton} from '~/Components'
 import {useDispatch} from 'react-redux'
-import {archiveMedication} from '~/Store/Actions'
+import {archiveMedication, pauseMedication} from '~/Store/Actions'
 
 const styles = StyleSheet.create({
+  BUTTON_CONTAINER: {
+    paddingVertical: 30,
+    paddingHorizontal: 20,
+    alignSelf: 'center',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+  },
+  BUTTON: {
+    width: 170,
+  },
   CONTAINER: {
     flex: 1,
     marginHorizontal: 10,
@@ -72,26 +82,25 @@ export const MedicationInfo: React.FC = () => {
           <Body style={styles.TEXT_HEADER}>Administration Method: </Body>
           <Body style={styles.TEXT}>{medication.administered}</Body>
         </View>
-        <View
-          style={{
-            paddingVertical: 30,
-            width: 200,
-            alignSelf: 'center',
-          }}>
+        <View style={styles.BUTTON_CONTAINER}>
           <PrimaryBlueButton
-            title={'End Medication'}
+            title={'End medication'}
+            titleStyle={{paddingHorizontal: 5, textAlign: 'center'}}
+            style={[styles.BUTTON]}
             onPress={() => {
-              dispatch(
-                archiveMedication(
-                  medication.id,
-                  medication.name,
-                  medication.substance,
-                  true,
-                  medication.administered,
-                  String(medication.dosage),
-                  medication.addedAt
-                )
-              )
+              dispatch(archiveMedication(medication))
+              navigation.reset({
+                stale: true,
+                routes: [{name: 'medication'}],
+              })
+            }}
+          />
+          <SecondaryBlueButton
+            title={'Pause medication'}
+            titleStyle={{textAlign: 'center', color: COLORS.blue3}}
+            style={styles.BUTTON}
+            onPress={() => {
+              dispatch(pauseMedication(medication))
               navigation.reset({
                 stale: true,
                 routes: [{name: 'medication'}],

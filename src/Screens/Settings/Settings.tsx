@@ -3,7 +3,7 @@ import {Modal, StyleSheet, View} from 'react-native'
 import {useNavigation, RouteProp, useRoute} from '@react-navigation/native'
 import {useDispatch} from 'react-redux'
 import {TextInput, Body, H1, PrimaryBlueButton, SecondaryBlueButton} from '~/Components'
-import {changeName, clearState} from '~/Store/Actions'
+import {changeName, cleanState} from '~/Store/Actions'
 import {NavigationStackParams} from '~/Navigation/Navigation'
 import {SafeAreaView} from 'react-native-safe-area-context'
 import {COLORS} from '~/Style/Colors'
@@ -72,7 +72,7 @@ export const Settings: React.FC = () => {
                 title={'Reset'}
                 style={styles.button}
                 onPress={() => {
-                  dispatch(clearState())
+                  dispatch(cleanState())
                   navigation.goBack()
                 }}
               />

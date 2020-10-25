@@ -1,8 +1,18 @@
 import {IMedication} from '~/Store'
 
 class CurrentMedicationService {
+  activeMeds: IMedication[] = []
+
   async load(medications: IMedication[]) {
-    return this.filterMedication(medications)
+    this.activeMeds = this.filterMedication(medications)
+  }
+
+  loadActiveMedications() {
+    return this.activeMeds.filter(m => !m.paused)
+  }
+
+  loadPausedMedications() {
+    return this.activeMeds.filter(m => m.paused)
   }
 
   filterMedication(medications: IMedication[]) {

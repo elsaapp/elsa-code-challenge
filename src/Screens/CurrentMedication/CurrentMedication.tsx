@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
   INFO: {
     marginHorizontal: 24,
     marginVertical: 24,
+    height: '5%',
     alignItems: 'center',
   },
 })
@@ -24,12 +25,12 @@ export const CurrentMedication: React.FC = () => {
   const fetchMedication = useSelector(medicationsSelector)
   const navigation = useNavigation()
 
-  const [medications, setMedications] = useState<IMedication[]>([])
-
+  const [activeMedications, setActiveMedications] = useState<IMedication[]>([])
+  const [pausedMedications, setPausedMedications] = useState<IMedication[]>([])
   useEffect(() => {
-    service.load(fetchMedication).then(s => {
-      setMedications(s)
-    })
+    service.load(fetchMedication)
+    setActiveMedications(service.loadActiveMedications())
+    setPausedMedications(service.loadPausedMedications())
   }, [fetchMedication])
 
   function isEmpty() {
@@ -56,25 +57,48 @@ export const CurrentMedication: React.FC = () => {
       <SafeAreaView style={{backgroundColor: COLORS.darknavy}} edges={['top']} />
       <View style={styles.CONTAINER}>
         <View style={styles.INFO}>
-          <H1>Active Medication(s)</H1>
+          <H1>Active medication(s)</H1>
+        </View>
+        <View style={{height: '40%'}}>
+          <FlatList
+            data={activeMedications}
+            ListEmptyComponent={isEmpty}
+            keyExtractor={item => item.id}
+            renderItem={({item: medication}) => (
+              <ListItem
+                subtitle={medication?.substance}
+                style={{paddingHorizontal: 20}}
+                title={medication?.name}
+                detailsText={`Started: ${medication?.addedAt}`}
+                detailsTextStyle={{color: COLORS.black}}
+                onPress={() => navigation.navigate('info', {meds: medication})}
+                withArrow={true}
+              />
+            )}
+          />
         </View>
 
-        <FlatList
-          data={medications}
-          ListEmptyComponent={isEmpty}
-          keyExtractor={item => item.id}
-          renderItem={({item: medication}) => (
-            <ListItem
-              subtitle={medication?.substance}
-              style={{paddingHorizontal: 20}}
-              title={medication?.name}
-              detailsText={`Started: ${medication?.addedAt}`}
-              detailsTextStyle={{color: COLORS.black}}
-              onPress={() => navigation.navigate('info', {meds: medication})}
-              withArrow={true}
-            />
-          )}
-        />
+        <View style={[styles.INFO, {height: '7%'}]}>
+          <H1>Paused medication(s)</H1>
+        </View>
+        <View style={{height: '45%'}}>
+          <FlatList
+            data={pausedMedications}
+            ListEmptyComponent={isEmpty}
+            keyExtractor={item => item.id}
+            renderItem={({item: medication}) => (
+              <ListItem
+                subtitle={medication?.substance}
+                style={{paddingHorizontal: 20}}
+                title={medication?.name}
+                detailsText={`Started: ${medication?.addedAt}`}
+                detailsTextStyle={{color: COLORS.black}}
+                onPress={() => navigation.navigate('info', {meds: medication})}
+                withArrow={true}
+              />
+            )}
+          />
+        </View>
       </View>
     </>
   )

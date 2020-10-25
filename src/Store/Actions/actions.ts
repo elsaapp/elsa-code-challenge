@@ -1,4 +1,5 @@
 import {createAction} from 'typesafe-actions'
+import {IMedication} from '~/Store'
 
 export const cleanState = createAction('CLEAN_STATE')
 
@@ -6,30 +7,16 @@ export const changeName = createAction('CHANGE_NAME', action => (name: string) =
 
 export const addMedication = createAction(
   'ADD_MEDICATION',
-  action => (
-    medicationName: string,
-    substance: string,
-    finished: boolean,
-    administered: string,
-    dosage: string
-  ) => action({medicationName, substance, finished, administered, dosage})
+  action => (medicationName: string, substance: string, administered: string, dosage: string) =>
+    action({medicationName, substance, administered, dosage})
 )
 
-export const updateMedication = createAction('DELETE_MEDICATION', action => (id: string) =>
-  action({id})
+export const pauseMedication = createAction(
+  'PAUSE_MEDICATION',
+  action => (medication: IMedication) => action({medication})
 )
 
 export const archiveMedication = createAction(
   'ARCHIVE_MEDICATION',
-  action => (
-    id: string,
-    medicationName: string,
-    substance: string,
-    finished: boolean,
-    administered: string,
-    dosage: string,
-    date: string
-  ) => action({id, medicationName, substance, finished, administered, dosage, date})
+  action => (medication: IMedication) => action({medication})
 )
-
-export const clearState = createAction('CLEAN_STATE')
