@@ -14,6 +14,7 @@ export type IMedication = {
   finished: boolean
   endedAt: string
   addedAt: string
+  pausedAt: string
 }
 
 export type MedicationsState = {
@@ -40,7 +41,6 @@ export const user = (
     }
     case 'ADD_MEDICATION': {
       const {medicationName, substance, administered, dosage} = action.payload
-      const dateFromNow = new Date()
       return {
         ...state,
         medications: [
@@ -53,8 +53,9 @@ export const user = (
             paused: false,
             dosage: dosage,
             administered: administered,
-            addedAt: dayjs(dateFromNow).format('DD/MM/YYYY').toString(),
+            addedAt: dayjs(new Date()).format('DD/MM/YYYY').toString(),
             endedAt: null,
+            pausedAt: null,
           },
         ],
       } as MedicationsState
@@ -76,6 +77,31 @@ export const user = (
             administered: pausedMeds[0].administered,
             addedAt: pausedMeds[0].addedAt,
             endedAt: pausedMeds[0].endedAt,
+            pausedAt: dayjs(new Date()).format('DD/MM/YYYY').toString(),
+          },
+        ],
+        history: [...state.history],
+      } as MedicationsState
+    }
+    case 'RESTART_MEDICATION': {
+      const {medication} = action.payload
+      const pausedMeds = state.medications.filter(m => m.id === medication.id)
+
+      return {
+        ...state,
+        medications: [
+          ...state.medications.filter(m => m.id !== medication.id),
+          {
+            id: pausedMeds[0].id,
+            name: pausedMeds[0].name,
+            substance: pausedMeds[0].substance,
+            finished: pausedMeds[0].finished,
+            paused: false,
+            dosage: pausedMeds[0].dosage,
+            administered: pausedMeds[0].administered,
+            addedAt: pausedMeds[0].addedAt,
+            endedAt: pausedMeds[0].endedAt,
+            pausedAt: null,
           },
         ],
         history: [...state.history],

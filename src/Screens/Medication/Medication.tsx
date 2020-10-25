@@ -8,7 +8,7 @@ import {BackButton} from '~/Navigation'
 import {CurrentMedicationStackParams} from '~/Navigation/Navigation'
 import {PrimaryBlueButton, Body, H1, SecondaryBlueButton} from '~/Components'
 import {useDispatch} from 'react-redux'
-import {archiveMedication, pauseMedication} from '~/Store/Actions'
+import {archiveMedication, pauseMedication, restartMedication} from '~/Store/Actions'
 
 const styles = StyleSheet.create({
   BUTTON_CONTAINER: {
@@ -76,7 +76,11 @@ export const MedicationInfo: React.FC = () => {
         </View>
         <View style={styles.INFO_BOXES}>
           <Body style={styles.TEXT_HEADER}>Active: </Body>
-          <Body style={styles.TEXT}>Yes</Body>
+          {!medication.paused ? (
+            <Body style={styles.TEXT}>Yes</Body>
+          ) : (
+            <Body style={styles.TEXT}>No</Body>
+          )}
         </View>
         <View style={styles.INFO_BOXES}>
           <Body style={styles.TEXT_HEADER}>Administration Method: </Body>
@@ -95,18 +99,33 @@ export const MedicationInfo: React.FC = () => {
               })
             }}
           />
-          <SecondaryBlueButton
-            title={'Pause medication'}
-            titleStyle={{textAlign: 'center', color: COLORS.blue3}}
-            style={styles.BUTTON}
-            onPress={() => {
-              dispatch(pauseMedication(medication))
-              navigation.reset({
-                stale: true,
-                routes: [{name: 'medication'}],
-              })
-            }}
-          />
+          {!medication.paused ? (
+            <SecondaryBlueButton
+              title={'Pause medication'}
+              titleStyle={{textAlign: 'center', color: COLORS.blue3}}
+              style={styles.BUTTON}
+              onPress={() => {
+                dispatch(pauseMedication(medication))
+                navigation.reset({
+                  stale: true,
+                  routes: [{name: 'medication'}],
+                })
+              }}
+            />
+          ) : (
+            <SecondaryBlueButton
+              title={'Restart medication'}
+              titleStyle={{textAlign: 'center', color: COLORS.blue3}}
+              style={styles.BUTTON}
+              onPress={() => {
+                dispatch(restartMedication(medication))
+                navigation.reset({
+                  stale: true,
+                  routes: [{name: 'medication'}],
+                })
+              }}
+            />
+          )}
         </View>
       </View>
     </>

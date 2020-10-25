@@ -16,6 +16,11 @@ export const pauseMedication = createAction(
   action => (medication: IMedication) => action({medication})
 )
 
+export const restartMedication = createAction(
+  'RESTART_MEDICATION',
+  action => (medication: IMedication) => action({medication})
+)
+
 export const archiveMedication = createAction(
   'ARCHIVE_MEDICATION',
   action => (medication: IMedication) => action({medication})

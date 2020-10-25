@@ -46,7 +46,26 @@ export const CurrentMedication: React.FC = () => {
           style={{
             textAlign: 'center',
           }}>
-          You have not added any medications yet
+          You have either not added any medications or none are active at the moment.
+        </Body>
+      </View>
+    )
+  }
+
+  function isEmptyAndPaused() {
+    return (
+      <View
+        style={{
+          backgroundColor: COLORS.white,
+          paddingVertical: 10,
+          height: 400,
+        }}>
+        <Body
+          variant="large"
+          style={{
+            textAlign: 'center',
+          }}>
+          You have no paused Medications.
         </Body>
       </View>
     )
@@ -77,28 +96,31 @@ export const CurrentMedication: React.FC = () => {
             )}
           />
         </View>
-
-        <View style={[styles.INFO, {height: '7%'}]}>
-          <H1>Paused medication(s)</H1>
-        </View>
-        <View style={{height: '45%'}}>
-          <FlatList
-            data={pausedMedications}
-            ListEmptyComponent={isEmpty}
-            keyExtractor={item => item.id}
-            renderItem={({item: medication}) => (
-              <ListItem
-                subtitle={medication?.substance}
-                style={{paddingHorizontal: 20}}
-                title={medication?.name}
-                detailsText={`Started: ${medication?.addedAt}`}
-                detailsTextStyle={{color: COLORS.black}}
-                onPress={() => navigation.navigate('info', {meds: medication})}
-                withArrow={true}
+        {pausedMedications.length > 0 ? (
+          <View>
+            <View style={[styles.INFO, {height: '9%'}]}>
+              <H1>Paused medication(s)</H1>
+            </View>
+            <View style={{height: '45%'}}>
+              <FlatList
+                data={pausedMedications}
+                ListEmptyComponent={isEmptyAndPaused}
+                keyExtractor={item => item.id}
+                renderItem={({item: medication}) => (
+                  <ListItem
+                    subtitle={medication?.substance}
+                    style={{paddingHorizontal: 20}}
+                    title={medication?.name}
+                    detailsText={`Paused: ${medication?.pausedAt}`}
+                    detailsTextStyle={{color: COLORS.black}}
+                    onPress={() => navigation.navigate('info', {meds: medication})}
+                    withArrow={true}
+                  />
+                )}
               />
-            )}
-          />
-        </View>
+            </View>
+          </View>
+        ) : null}
       </View>
     </>
   )
