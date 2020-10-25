@@ -151,4 +151,9 @@ export const Font = ({
   fontSize?: number
 }): FontType =>
   // (Platform.OS === 'ios' ? {fontFamily: 'Proxima Nova', fontStyle: 'italic'}: { fontFamily: 'ProximaNova-RegularIt'})
-  buildFont(Platform.OS === 'ios' ? 'Proxima Nova' : 'ProximaNova', fontWeight, fontStyle, fontSize)
+  buildFont(
+    Platform.OS === 'ios' ? 'NotoSansJP-Regular' : 'NotoSansJP-Black',
+    fontWeight,
+    fontStyle,
+    fontSize
+  )

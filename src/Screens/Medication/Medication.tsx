@@ -101,8 +101,8 @@ export const MedicationInfo: React.FC = () => {
           />
           {!medication.paused ? (
             <SecondaryBlueButton
-              title={'Pause medication'}
-              titleStyle={{textAlign: 'center', color: COLORS.blue3}}
+              title={'Pause'}
+              titleStyle={{textAlign: 'center', color: COLORS.blue3, marginHorizontal: 1}}
               style={styles.BUTTON}
               onPress={() => {
                 dispatch(pauseMedication(medication))
@@ -114,8 +114,8 @@ export const MedicationInfo: React.FC = () => {
             />
           ) : (
             <SecondaryBlueButton
-              title={'Restart medication'}
-              titleStyle={{textAlign: 'center', color: COLORS.blue3}}
+              title={'Resume'}
+              titleStyle={{textAlign: 'center', color: COLORS.blue3, marginHorizontal: 1}}
               style={styles.BUTTON}
               onPress={() => {
                 dispatch(restartMedication(medication))

@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   INFO: {
     marginHorizontal: 24,
     marginVertical: 24,
-    height: '5%',
+    height: '7%',
     alignItems: 'center',
   },
 })
