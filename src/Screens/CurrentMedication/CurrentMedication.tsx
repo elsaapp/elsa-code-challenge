@@ -88,7 +88,7 @@ export const CurrentMedication: React.FC = () => {
                 subtitle={medication?.substance}
                 style={{paddingHorizontal: 20}}
                 title={medication?.name}
-                detailsText={`Started: ${medication?.addedAt}`}
+                detailsText={`Paused: ${medication?.addedAt}`}
                 detailsTextStyle={{color: COLORS.black}}
                 onPress={() => navigation.navigate('info', {meds: medication})}
                 withArrow={true}

@@ -3,7 +3,7 @@ import Entypo from 'react-native-vector-icons/Entypo'
 import {Animated, TouchableOpacity, View, ViewStyle} from 'react-native'
 import {COLORS} from '~/Style/Colors'
 import {Body} from '~/Components'
-import {animateService} from '~/logic/animate/Animate.service'
+import {animateService} from '~/Logic/animate/Animate.service'
 
 interface Props {
   onOptionPress: (option?: string) => any

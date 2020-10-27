@@ -4,6 +4,7 @@ import React, {useEffect, useRef} from 'react'
 import {StatusBar, View} from 'react-native'
 import {SafeAreaProvider} from 'react-native-safe-area-context'
 import SplashScreen from 'react-native-splash-screen'
+import RNCalendarEvents from 'react-native-calendar-events'
 import {Provider} from 'react-redux'
 import {PersistGate} from 'redux-persist/integration/react'
 import {COLORS} from './Style/Colors'
@@ -19,11 +20,15 @@ const CustomTheme = {
     background: COLORS.white,
   },
 }
+
 export const Root = () => {
   const store = useRef(initiateStore())
+
   useEffect(() => {
+    RNCalendarEvents.requestPermissions()
     SplashScreen.hide()
   }, [])
+
   return (
     <SafeAreaProvider>
       <View style={{flex: 1}}>
