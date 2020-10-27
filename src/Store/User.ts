@@ -1,8 +1,17 @@
 import {RootAction} from '~/Store/Actions'
 
+export type Administration = 'Orally' | 'Injection' | 'Infusion'
+export type IStrenght = {
+  value: number
+  unit: 'mg' | 'g'
+}
 export type IMedication = {
   name: string
+  substance: string
+  administration: Administration
+  strenght: IStrenght
   addedAt: string
+  removedAt?: string
 }
 
 export type MedicationsState = {
@@ -26,14 +35,30 @@ export const user = (
       }
     }
     case 'ADD_MEDICATION': {
-      const {medicationName} = action.payload
+      const {name, substance, administration, strenght} = action.payload
       return {
         ...state,
         medications: [
           ...state.medications,
-          {name: medicationName, addedAt: new Date().toISOString()},
+          {name, substance, administration, strenght, addedAt: new Date().toISOString()},
         ],
       }
+    }
+    case 'REMOVE_MEDICATION': {
+      const {medicationName} = action.payload
+      const existingMedication = state.medications.find(m => m.name === medicationName)
+
+      if (existingMedication) {
+        return {
+          ...state,
+          medications: [
+            ...state.medications.filter(m => m.name !== medicationName),
+            {...existingMedication, removedAt: new Date().toISOString()},
+          ],
+        }
+      }
+
+      return state
     }
     case 'CLEAN_STATE':
       return defaultUser()

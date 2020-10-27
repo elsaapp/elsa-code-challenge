@@ -49,7 +49,7 @@ yarn install
 
 ```
 cd ios
-gem install cocoapods
+sudo gem install cocoapods
 pod install
 ```
 
@@ -60,6 +60,7 @@ NOTE! The React Native Bundler needs to be started on localhost:8081 before runn
 ```sh
 yarn start
 ```
+
 And then either start the app in Android and/or iOS using:
 
 ### Android emulator
