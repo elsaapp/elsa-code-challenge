@@ -15,9 +15,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.white,
   },
-  contentContainer: {
-    paddingHorizontal: 24,
-  },
   listDivider: {
     height: 1,
     backgroundColor: Colors.gray3,
@@ -46,7 +43,7 @@ export const List = forwardRef<ScrollView, ListProps>(
       <ScrollView
         ref={ref}
         style={[styles.container, style]}
-        contentContainerStyle={[styles.contentContainer, contentContainerStyle]}
+        contentContainerStyle={contentContainerStyle}
         keyboardShouldPersistTaps={keyboardShouldPersistTaps}
         showsVerticalScrollIndicator={false}
         alwaysBounceVertical={false}>
