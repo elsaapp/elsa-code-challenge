@@ -1,4 +1,3 @@
-import 'react-native-get-random-values'
 import {RootAction} from '~/Store/Actions'
 // @ts-ignore
 import {v4 as uuidv4} from 'uuid'
@@ -21,11 +20,13 @@ export type MedicationsState = {
   history: IMedication[]
   medications: IMedication[]
   name: string
+  calendarId: string
 }
 export const defaultUser = (): MedicationsState => ({
   history: [],
   medications: [],
   name: 'Elsa',
+  calendarId: '',
 })
 export const user = (
   state: MedicationsState = defaultUser(),

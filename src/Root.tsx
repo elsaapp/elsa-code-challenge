@@ -1,3 +1,4 @@
+import 'react-native-get-random-values'
 import {DefaultTheme, NavigationContainer} from '@react-navigation/native'
 
 import React, {useEffect, useRef} from 'react'
