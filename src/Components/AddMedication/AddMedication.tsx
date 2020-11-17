@@ -22,13 +22,14 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
 })
-
+//TODO later need to add functionality for calender events for now hide switch
 export const AddMedication = () => {
   const dispatch = useDispatch()
   const [name, setName] = useState('')
   const [substance, setSubstance] = useState('')
   const [dose, setDose] = useState('')
   const [administered, setAdministered] = useState('')
+  const [hidden] = useState(true)
 
   const [reminder, setReminder] = useState<boolean>(true)
 
@@ -61,18 +62,22 @@ export const AddMedication = () => {
         />
       </View>
       <View style={{flexDirection: 'row', paddingHorizontal: 20}}>
-        <Body style={{paddingHorizontal: 10}}>
-          Do you want to set a daily reminder for your medication
-        </Body>
-        <Switch
-          value={reminder}
-          onValueChange={() => {
-            setReminder(!reminder)
-            console.log(reminder)
-          }}
-        />
+        {!hidden && (
+          <Body style={{paddingHorizontal: 10}}>
+            Do you want to set a daily reminder for your medication
+          </Body>
+        )}
+        {!hidden && (
+          <Switch
+            value={reminder}
+            onValueChange={() => {
+              setReminder(!reminder)
+              console.log(reminder)
+            }}
+          />
+        )}
       </View>
-      {reminder && (
+      {reminder && !hidden && (
         <View style={{flexDirection: 'row', paddingVertical: 20}}>
           <TouchableOpacity>
             <Body>click to pick a time for reminder.</Body>

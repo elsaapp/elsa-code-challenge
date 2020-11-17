@@ -2,6 +2,7 @@ import React from 'react'
 import {StyleSheet} from 'react-native'
 import Entypo from 'react-native-vector-icons/Entypo'
 
+
 export interface Props {
   lib?: 'AntDesign' | 'Entypo'
   name: string
