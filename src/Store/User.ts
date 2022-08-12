@@ -2,6 +2,9 @@ import {RootAction} from '~/Store/Actions'
 
 export type IMedication = {
   name: string
+  substance: string
+  dosage: string
+  modeOfAdministration: string
   addedAt: string
 }
 
@@ -26,13 +29,26 @@ export const user = (
       }
     }
     case 'ADD_MEDICATION': {
-      const {medicationName} = action.payload
+      const {medicationName, substance, dosage, modeOfAdministration} = action.payload
       return {
         ...state,
         medications: [
           ...state.medications,
-          {name: medicationName, addedAt: new Date().toISOString()},
+          {
+            name: medicationName,
+            substance: substance,
+            dosage: dosage,
+            modeOfAdministration: modeOfAdministration,
+            addedAt: new Date().toISOString(),
+          },
         ],
+      }
+    }
+    case 'DELETE_MEDICATION': {
+      const {name} = action.payload
+      return {
+        ...state,
+        medications: state.medications.filter(item => item.name !== name),
       }
     }
     case 'CLEAN_STATE':

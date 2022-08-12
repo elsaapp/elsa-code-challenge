@@ -12,15 +12,21 @@ import {defaultNavigationOptions} from '~/Navigation'
 import {Routes} from '~/Navigation/Routes'
 import {Start} from '~/Start'
 import {initiateStore, persistor} from '~/Store'
+import {AddMedication} from '~/Components/Medication/AddMedication'
+import {ViewMedication} from '~/Components/Medication/ViewMedication'
 
 export type RootStackParamList = {
   [Routes.START]: undefined
   [Routes.CHANGE_NAME]: {name: string}
+  [Routes.ADD_MEDICATION]: any
+  [Routes.VIEW_MEDICATION]: any
 }
 const Stack = createStackNavigator<RootStackParamList>()
 
 export type RootNavigation = StackNavigationProp<RootStackParamList>
 export type ChangeNameRouteProp = RouteProp<RootStackParamList, Routes.CHANGE_NAME>
+export type AddMedicationRouteProp = RouteProp<RootStackParamList, Routes.ADD_MEDICATION>
+export type ViewMedicationRouteProp = RouteProp<RootStackParamList, Routes.VIEW_MEDICATION>
 
 const RootStack: React.FC = () => {
   return (
@@ -36,6 +42,20 @@ const RootStack: React.FC = () => {
         options={({route}) => ({
           title: route.params.name,
         })}
+      />
+      <Stack.Screen
+        name={Routes.ADD_MEDICATION}
+        component={AddMedication}
+        options={{
+          title: 'New Medication',
+        }}
+      />
+      <Stack.Screen
+        name={Routes.VIEW_MEDICATION}
+        component={ViewMedication}
+        options={{
+          title: 'Current Medications',
+        }}
       />
     </Stack.Navigator>
   )

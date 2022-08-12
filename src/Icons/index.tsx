@@ -21,6 +21,7 @@ export const Icons = {
   faceHappy: (props: IconProps) => <CustomIcon name="face_happy" size={16} {...props} />,
   steps: (props: IconProps) => <CustomIcon name="icon_steps" size={16} {...props} />,
   wellBeing: (props: IconProps) => <CustomIcon name="icon_wellbeing" size={16} {...props} />,
+  delete: (props: IconProps) => <CustomIcon name="delete" size={24} {...props} />,
   activities: (props: IconProps) => (
     <CustomIcon name="icon_physical_activity" size={16} {...props} />
   ),
