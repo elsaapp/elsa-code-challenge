@@ -12,14 +12,18 @@ import {defaultNavigationOptions} from '~/Navigation'
 import {Routes} from '~/Navigation/Routes'
 import {Start} from '~/Start'
 import {initiateStore, persistor} from '~/Store'
+import AddMedication from './Components/Medication/AddMedication'
 
 export type RootStackParamList = {
   [Routes.START]: undefined
   [Routes.CHANGE_NAME]: {name: string}
+  [Routes.ADD_MEDICATION]: any
 }
 const Stack = createStackNavigator<RootStackParamList>()
 
 export type RootNavigation = StackNavigationProp<RootStackParamList>
+export type AddMedicationRouteProp = RouteProp<RootStackParamList, Routes.ADD_MEDICATION>
+
 export type ChangeNameRouteProp = RouteProp<RootStackParamList, Routes.CHANGE_NAME>
 
 const RootStack: React.FC = () => {
@@ -36,6 +40,13 @@ const RootStack: React.FC = () => {
         options={({route}) => ({
           title: route.params.name,
         })}
+      />
+      <Stack.Screen
+        name={Routes.ADD_MEDICATION}
+        component={AddMedication}
+        options={{
+          title: 'Medication',
+        }}
       />
     </Stack.Navigator>
   )
