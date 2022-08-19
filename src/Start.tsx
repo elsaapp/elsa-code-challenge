@@ -3,7 +3,7 @@ import {StyleSheet, View} from 'react-native'
 import {SafeAreaView} from 'react-native-safe-area-context'
 import {useSelector} from 'react-redux'
 import {Colors} from '~/Colors'
-import {Body, H1, SecondaryBlueButton} from '~/Components'
+import {H1, SecondaryBlueButton} from '~/Components'
 import {Routes} from '~/Navigation/Routes'
 import type {RootNavigation} from '~/Root'
 import {nameSelector} from '~/Store/Selectors/User'
@@ -42,11 +42,15 @@ export const Start: React.FC<StartProps> = ({navigation}) => {
             onPress={() => navigation.navigate(Routes.CHANGE_NAME, {name})}
           />
         </View>
-        <Body style={styles.help}>{`Hmm. It would be great if I had a list of my medications here... 🤔
-        
-        
-Please have a look at src/Start.tsx to get started!
-👩‍💻👨‍💻`}</Body>
+
+        <View style={styles.info}>
+          <SecondaryBlueButton
+            title="Medications"
+            onPress={() => {
+              navigation.navigate(Routes.ADD_MEDICATION)
+            }}
+          />
+        </View>
       </View>
     </SafeAreaView>
   )
