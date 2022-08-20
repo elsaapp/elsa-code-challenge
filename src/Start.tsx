@@ -42,7 +42,8 @@ export const Start: React.FC<StartProps> = ({navigation}) => {
             onPress={() => navigation.navigate(Routes.CHANGE_NAME, {name})}
           />
         </View>
-        <Body style={styles.help}>{`Hmm. It would be great if I had a list of my medications here... 🤔
+        <Body
+          style={styles.help}>{`Hmm. It would be great if I had a list of my medications here... 🤔
         
         
 Please have a look at src/Start.tsx to get started!
