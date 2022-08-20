@@ -8,10 +8,10 @@ import {
   TextStyle,
   InteractionManager,
 } from 'react-native'
-import {useFocusEffect, useIsFocused} from '@react-navigation/native'
 import {Colors} from '~/Colors'
 import {Font, FontWeight} from '~/Font'
 import {Icons} from '~/Icons'
+import {useFocusEffect, useIsFocused} from '~/Navigation'
 import {IconButton} from './Buttons'
 
 const styles = StyleSheet.create({

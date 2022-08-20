@@ -11,14 +11,14 @@ type UserState = {
   name: string
 }
 
-const initialState: UserState = {
+export const userInitialState: UserState = {
   name: 'Elsa',
   medications: [],
 }
 
 export const userSlice = createSlice({
   name: 'user',
-  initialState,
+  initialState: userInitialState,
   reducers: {
     changeName: (state, {payload: name}: PayloadAction<string>) => ({
       ...state,
@@ -27,7 +27,7 @@ export const userSlice = createSlice({
     addMedication: (state, {payload: name}: PayloadAction<string>) => {
       state.medications.push({name, addedAt: new Date().toISOString()})
     },
-    cleanState: () => initialState,
+    cleanState: () => userInitialState,
   },
 })
 

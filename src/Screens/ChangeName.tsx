@@ -1,8 +1,9 @@
-import React, {useState} from 'react'
+import React, {ReactElement, useState} from 'react'
 import {StyleSheet, View} from 'react-native'
 import {useDispatch} from 'react-redux'
 import {PrimaryBlueButton, TextInput} from '~/Components'
-import type {ChangeNameRouteProp, RootNavigation} from '~/Root'
+import {Routes, useNavigation, useRoute} from '~/Navigation'
+
 import {changeName} from '~/State'
 
 const styles = StyleSheet.create({
@@ -15,13 +16,13 @@ const styles = StyleSheet.create({
   },
 })
 
-type ChangeNameProps = {
-  navigation: RootNavigation
-  route: ChangeNameRouteProp
-}
-export const ChangeName: React.FC<ChangeNameProps> = ({navigation, route}) => {
+export const ChangeName = (): ReactElement => {
   const dispatch = useDispatch()
+  const navigation = useNavigation()
+  const route = useRoute<Routes.CHANGE_NAME>()
+
   const [name, setName] = useState(route.params.name)
+
   return (
     <View style={styles.container}>
       <TextInput value={name} onChangeText={setName} />

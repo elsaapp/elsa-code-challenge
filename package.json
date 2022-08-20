@@ -32,6 +32,8 @@
     "@babel/core": "^7.8.4",
     "@babel/runtime": "^7.8.4",
     "@react-native-community/eslint-config": "^1.1.0",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/react-native": "^11.0.0",
     "@types/jest": "^25.2.3",
     "@types/react-native": "^0.63.2",
     "@types/react-native-vector-icons": "^4.6.4",
@@ -47,6 +49,7 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.21.3",
     "eslint-plugin-react-hooks": "^4.1.2",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^25.1.0",
     "metro-react-native-babel-preset": "^0.59.0",
     "prettier": "^2.1.2",
@@ -62,6 +65,14 @@
       "jsx",
       "json",
       "node"
-    ]
+    ],
+    "modulePathIgnorePatterns": ["./src/Utils/test.tsx"],
+    "setupFiles": [
+      "./setupTests.js",
+      "./node_modules/react-native-gesture-handler/jestSetup.js"
+    ],
+    "moduleNameMapper": {
+      ".+\\.(png|jpg|jpeg|webp)$": "identity-obj-proxy"
+    }
   }
 }
