@@ -26,3 +26,6 @@ jobs:
 
       - name: Check linting
         run: yarn lint
+
+      - name: Run tests
+        run: yarn test

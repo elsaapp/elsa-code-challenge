@@ -1,12 +1,11 @@
-import React from 'react'
+import React, {ReactElement} from 'react'
 import {StyleSheet, View} from 'react-native'
 import {SafeAreaView} from 'react-native-safe-area-context'
 import {useSelector} from 'react-redux'
 import {Colors} from '~/Colors'
 import {Body, H1, SecondaryBlueButton} from '~/Components'
-import {Routes} from '~/Navigation/Routes'
-import type {RootNavigation} from '~/Root'
 import {nameSelector} from '~/State'
+import {Routes, useNavigation} from '~/Navigation'
 
 const styles = StyleSheet.create({
   background: {
@@ -27,11 +26,10 @@ const styles = StyleSheet.create({
   },
 })
 
-type StartProps = {
-  navigation: RootNavigation
-}
-export const Start: React.FC<StartProps> = ({navigation}) => {
+export const Start = (): ReactElement => {
   const name = useSelector(nameSelector)
+  const navigation = useNavigation()
+
   return (
     <SafeAreaView style={styles.background} edges={['top']}>
       <View style={styles.content}>
