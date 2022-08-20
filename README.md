@@ -65,11 +65,11 @@ And then either start the app in Android and/or iOS using:
 ### Android emulator
 
 ```
-react-native run-android
+yarn android
 ```
 
 ### iOS simulator
 
 ```
-react-native run-ios
+yarn ios
 ```
