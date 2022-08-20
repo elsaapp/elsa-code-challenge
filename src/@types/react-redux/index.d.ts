@@ -1,4 +1,4 @@
-import type {RootState, RootDispatch} from '~/Store'
+import type {RootState, RootDispatch} from '~/State'
 
 declare module 'react-redux' {
   // Add overload function to support type checked dispatch
