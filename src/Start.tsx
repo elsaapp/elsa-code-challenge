@@ -6,7 +6,7 @@ import {Colors} from '~/Colors'
 import {Body, H1, SecondaryBlueButton} from '~/Components'
 import {Routes} from '~/Navigation/Routes'
 import type {RootNavigation} from '~/Root'
-import {nameSelector} from '~/Store/Selectors/User'
+import {nameSelector} from '~/State'
 
 const styles = StyleSheet.create({
   background: {

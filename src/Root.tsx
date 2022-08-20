@@ -1,6 +1,6 @@
 import {DefaultTheme, NavigationContainer, RouteProp} from '@react-navigation/native'
 import {createStackNavigator, StackNavigationProp} from '@react-navigation/stack'
-import React, {useEffect, useRef} from 'react'
+import React, {useEffect} from 'react'
 import {StatusBar} from 'react-native'
 import {SafeAreaProvider} from 'react-native-safe-area-context'
 import SplashScreen from 'react-native-splash-screen'
@@ -11,7 +11,7 @@ import {Colors} from '~/Colors'
 import {defaultNavigationOptions} from '~/Navigation'
 import {Routes} from '~/Navigation/Routes'
 import {Start} from '~/Start'
-import {initiateStore, persistor} from '~/Store'
+import {store, persistor} from '~/State'
 
 export type RootStackParamList = {
   [Routes.START]: undefined
@@ -49,15 +49,15 @@ const CustomTheme = {
   },
 }
 export const Root = () => {
-  const store = useRef(initiateStore())
   useEffect(() => {
     SplashScreen.hide()
   }, [])
+
   return (
     <SafeAreaProvider>
       <StatusBar backgroundColor={Colors.darknavy} barStyle="light-content" />
-      <Provider store={store.current}>
-        <PersistGate loading={null} persistor={persistor(store.current)}>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
           <NavigationContainer theme={CustomTheme}>
             <RootStack />
           </NavigationContainer>

@@ -3,7 +3,7 @@ import {StyleSheet, View} from 'react-native'
 import {useDispatch} from 'react-redux'
 import {PrimaryBlueButton, TextInput} from '~/Components'
 import type {ChangeNameRouteProp, RootNavigation} from '~/Root'
-import {changeName} from '~/Store/Actions'
+import {changeName} from '~/State'
 
 const styles = StyleSheet.create({
   container: {
