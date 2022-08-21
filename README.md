@@ -14,8 +14,8 @@ Good luck! And have fun!
 
 These are just examples of features, feel free to come up with your own. And there is no need to finish all of them.
 
-- [ ] A way to add one (or more) medication(s)
-- [ ] View your current medications (in a list maybe)
+- [X] A way to add one (or more) medication(s)
+- [X] View your current medications (in a list maybe)
 - [ ] Remove one (or more) medication(s)
 - [ ] A history of all medications that you've been taking
 - [ ] A reminder of when to take a particular medication
