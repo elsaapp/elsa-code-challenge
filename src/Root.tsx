@@ -7,6 +7,7 @@ import SplashScreen from 'react-native-splash-screen'
 import {Provider} from 'react-redux'
 import {PersistGate} from 'redux-persist/integration/react'
 import {ChangeName} from '~/ChangeName'
+import {AddMedication} from '~/AddMedication'
 import {Colors} from '~/Colors'
 import {defaultNavigationOptions} from '~/Navigation'
 import {Routes} from '~/Navigation/Routes'
@@ -16,11 +17,13 @@ import {initiateStore, persistor} from '~/Store'
 export type RootStackParamList = {
   [Routes.START]: undefined
   [Routes.CHANGE_NAME]: {name: string}
+  [Routes.ADD_MEDICATION]: undefined
 }
 const Stack = createStackNavigator<RootStackParamList>()
 
 export type RootNavigation = StackNavigationProp<RootStackParamList>
-export type ChangeNameRouteProp = RouteProp<RootStackParamList, Routes.CHANGE_NAME>
+export type ChangeNameRouteProps = RouteProp<RootStackParamList, Routes.CHANGE_NAME>
+export type AddMedicationRouteProps = RouteProp<RootStackParamList, Routes.ADD_MEDICATION>
 
 const RootStack: React.FC = () => {
   return (
@@ -35,6 +38,13 @@ const RootStack: React.FC = () => {
         component={ChangeName}
         options={({route}) => ({
           title: route.params.name,
+        })}
+      />
+      <Stack.Screen
+        name={Routes.ADD_MEDICATION}
+        component={AddMedication}
+        options={() => ({
+          title: 'Add medication',
         })}
       />
     </Stack.Navigator>
