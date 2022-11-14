@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.gray4,
     height: 40,
     width: '100%',
-    marginBottom: 16,
+    marginBottom: 4,
   },
   textInput: {
     paddingLeft: 16,

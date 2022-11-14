@@ -1,12 +1,12 @@
 import React from 'react'
-import {StyleSheet, View} from 'react-native'
+import {StyleSheet, View, Text} from 'react-native'
 import {SafeAreaView} from 'react-native-safe-area-context'
 import {useSelector} from 'react-redux'
 import {Colors} from '~/Colors'
-import {Body, H1, SecondaryBlueButton} from '~/Components'
+import {Body, H1, PrimaryBlueButton, MedicationList} from '~/Components'
 import {Routes} from '~/Navigation/Routes'
 import type {RootNavigation} from '~/Root'
-import {nameSelector} from '~/Store/Selectors/User'
+import {nameSelector, medicationsSelector} from '~/Store/Selectors/User'
 
 const styles = StyleSheet.create({
   background: {
@@ -25,6 +25,9 @@ const styles = StyleSheet.create({
   help: {
     marginHorizontal: 24,
   },
+  underline: {
+    textDecorationLine: 'underline',
+  },
 })
 
 type StartProps = {
@@ -32,21 +35,38 @@ type StartProps = {
 }
 export const Start: React.FC<StartProps> = ({navigation}) => {
   const name = useSelector(nameSelector)
+  const medications = useSelector(medicationsSelector)
   return (
     <SafeAreaView style={styles.background} edges={['top']}>
       <View style={styles.content}>
         <View style={styles.info}>
-          <H1>Hello {name}!</H1>
-          <SecondaryBlueButton
-            title={'Change name'}
-            onPress={() => navigation.navigate(Routes.CHANGE_NAME, {name})}
+          {name ? (
+            <H1>
+              <Text>Hello </Text>
+              <Text
+                style={styles.underline}
+                onPress={() => navigation.navigate(Routes.CHANGE_NAME, {name})}>
+                {name}
+              </Text>
+              <Text>!</Text>
+            </H1>
+          ) : (
+            <H1
+              style={styles.underline}
+              onPress={() => navigation.navigate(Routes.CHANGE_NAME, {name})}>
+              What is your name?
+            </H1>
+          )}
+          <PrimaryBlueButton
+            title="Add medication"
+            onPress={() => navigation.navigate(Routes.ADD_MEDICATION)}
           />
         </View>
-        <Body style={styles.help}>{`Hmm. It would be great if I had a list of my medications here... 🤔
-        
-        
-Please have a look at src/Start.tsx to get started!
-👩‍💻👨‍💻`}</Body>
+        {medications.length > 0 ? (
+          <MedicationList medications={medications} />
+        ) : (
+          <Body style={styles.help}>{`Start by adding your medications.`}</Body>
+        )}
       </View>
     </SafeAreaView>
   )

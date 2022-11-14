@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {StyleSheet, View} from 'react-native'
 import {useDispatch} from 'react-redux'
 import {PrimaryBlueButton, TextInput} from '~/Components'
-import type {ChangeNameRouteProp, RootNavigation} from '~/Root'
+import type {ChangeNameRouteProps, RootNavigation} from '~/Root'
 import {changeName} from '~/Store/Actions'
 
 const styles = StyleSheet.create({
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 
 type ChangeNameProps = {
   navigation: RootNavigation
-  route: ChangeNameRouteProp
+  route: ChangeNameRouteProps
 }
 export const ChangeName: React.FC<ChangeNameProps> = ({navigation, route}) => {
   const dispatch = useDispatch()
